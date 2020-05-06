@@ -7,7 +7,7 @@
     text-rendering: optimizeLegibility;
     font-family: Inter, Arial, sans-serif;
     color: #FFFFFF;
-    font-weight: normal;
+    font-style: normal;
   }
   
 .header{
@@ -31,5 +31,69 @@
     color:#545454;
     opacity: 0.7;
     margin-bottom: 36.25px;
+}
+
+.profile{
+    width:80%;
+    max-width: 1200px;
+    min-width:400px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 47.25px;
+}
+
+.profile__container{
+    display:flex;
+    justify-content: space-between;
+}
+
+.profile__box{
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 24px;
+}
+
+.profile__img{
+    border-radius: 50%;
+    width: 127px;
+    margin-right: 24px;
+}
+
+.profile__pen{
+    width:10px;
+    height:10px;
+    padding:7px;
+    border:solid;
+    border-color: white;
+    border-width: 1px;
+    margin-left:24px;
+}
+
+.profile__title{
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+}
+
+.profile__subtitle{
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.profile__botton{
+    width:22px;
+    height: 22px;
+    padding-top:14px;
+    padding-bottom: 14px;
+    padding-left:64px;
+    padding-right: 64px;
+    border:solid;
+    border-color: white;
+    border-width: 1px;
+
+    position: relative;
+    top:50%;
+    transform: translate(0,-50%);
 }
 
