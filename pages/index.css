@@ -1,0 +1,35 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/font/font.css);
+
+.page{
+    background-color: #000000;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Inter, Arial, sans-serif;
+    color: #FFFFFF;
+    font-weight: normal;
+  }
+  
+.header{
+    width:80%;
+    max-width: 1200px;
+    min-width:400px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top:45px;
+}
+
+.header__logo{
+    width:173px;
+    height: 33px;
+    object-fit: contain;
+}
+.header__line{
+    margin-top:41px;
+    width:100%;
+    size: 1px;
+    color:#545454;
+    opacity: 0.7;
+    margin-bottom: 36.25px;
+}
+
