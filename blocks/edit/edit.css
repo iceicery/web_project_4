@@ -1,0 +1,20 @@
+@import url(./__button/edit__button.css);
+@import url(./__form/edit__form.css);
+@import url(./__hidden/edit__hidden.css);
+@import url(./__icon/edit__icon.css);
+@import url(./__input/edit__input.css);
+@import url(./__title/edit__title.css);
+
+.edit{
+    position: absolute;
+    max-width: 90%;
+    width: 430px;
+    height: 330px;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: 195px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}

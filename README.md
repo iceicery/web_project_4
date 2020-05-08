@@ -1,16 +1,23 @@
-# Project 4: Around The U.S.
+## Website: Around the U.S.
 
-### Overview
+## Description
+This project is a website providing information of journey around the U.S. In this project, Flex and grid display are used for better layout and media query is used for diffent size displays. JavaScript is used to provided changes to the title and subtitle based on users' input. 
 
-* Figma
-* Images
+## Technologies 
+Project is created with:
+* HTML
+* CSS
+* JavaScript
 
-**Figma**
 
-* [Link to the project in Figma](https://www.figma.com/file/xM9rNsdK4iNcFJmDZho3Aw/Sprint-3%3A-From-Portland-to-Portland-%2F-desktop-%2B-mobile?node-id=500%3A0)
+## Plans for the next
+* Add map
+* Add link 
+* Embed social media pages.
 
-**Images**
+## Link to the website
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+https://iceicery.github.io/web_project_4/
 
-Have fun with JavaScript!
+## Acknowledgments
+This project is part of Practicum web developer training. 
