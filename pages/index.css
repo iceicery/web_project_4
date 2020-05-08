@@ -72,6 +72,10 @@
 
 }  
 
+.edit__input:focus{
+    outline:solid 1px #2F80ED;
+}
+
 .edit__button{
     margin-top:48px;
     right: 0;
