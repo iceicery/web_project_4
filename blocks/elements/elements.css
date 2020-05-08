@@ -5,14 +5,14 @@
 @import url(./__title/elements__title.css);
 
 .elements{
-    width:80%;
+    width:70%;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 @media screen and (max-width:425px){
     .elements{
-        width:90%;
+        width:88%;
     }
    
 }

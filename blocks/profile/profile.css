@@ -1,27 +1,35 @@
-@import url(./__box/profile__box.css);
 @import url(./__button-pen/profile__button-pen.css);
 @import url(./__button-plus/profile__button-plus.css);
 @import url(./__button-reg/profile__button-reg.css);
 @import url(./__button-sqr/profile__button-sqr.css);
-@import url(./__container/profile__container.css);
 @import url(./__img/profile__img.css);
 @import url(./__subtitle/profile__subtitle.css);
 @import url(./__text-container/profile__text-container.css);
-@import url(./__title-box/profile__title-box.css);
 @import url(./__title/profile__title.css);
 
 
 
 .profile{
-    width:80%;
+    width:70%;
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
     padding-bottom: 47.25px;
+    margin-top:36.25px;
+
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
 }
 
 @media screen and (max-width:425px){
     .profile{
-        width:90%;
+        width:88%;
+        margin-top:38.25px;
+        padding-bottom: 36px;
+
+        flex-direction: column;
+        justify-content: flex-start;
     }
 }
+
