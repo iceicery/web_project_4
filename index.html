@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="./pages/index.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Around the U.S.</title>
+        
     </head>
     <body>
         <div class="page">
@@ -12,7 +13,7 @@
             <img src="./images/Vector.png" alt="logo" class="header__logo">
             <hr class="header__line">
         </header>
-        <main>
+        <main class="container">
         <section class="profile">
             <div class="profile__container">
                 <div class="profile__box">
@@ -74,12 +75,12 @@
                 </li>
             </ul>
         </section>
-        <section class="edit">
+        <section class="edit edit__hidden">
             <img src="images/Icon.png" alt="icon" class="edit__icon">
             <div class="edit__container">
             <h2 class="edit__title">Edit profile</h2>
-            <input type="text" class="edit__input" value="Jacques Cousteau">
-            <input type="text" class="edit__input" value="Explorer">
+            <input type="text" id="name" class="edit__input" value="Jacques Cousteau">
+            <input type="text" id="job" class="edit__input" value="Explorer">
             <button class="edit__button">Save</button>
             </div>
         </section>
@@ -88,5 +89,6 @@
             <p class="footer__text">© 2020 Around The U.S.</p>
         </footer>
         </div>
+        <script src="script.js"></script>
     </body>
 </html>

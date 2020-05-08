@@ -20,6 +20,7 @@
     border-radius: 10px;
 }
 
+
 .edit__container{
     width:80%;
     height:100%;
@@ -90,6 +91,9 @@
     cursor:pointer;
 }
 
+.edit__hidden{
+    display:none;
+}
 
 
 
