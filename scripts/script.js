@@ -37,6 +37,11 @@ function formSubmitHandler (evt) {
     // Insert new values using the textContent property of the querySelector() method
     titleToChange.textContent=name;
     subtitleToChange.textContent=job;
+
+    //???????????????? Question ???????????????????????????????????????????//
+    //I was told to delete one of unneccesary <div> which I wrap title and button, now I put the button inside the <h1> for better aligning title and the button
+    //But when user input a value, it will overwrite the button.
+    //Is this a way to keep my title buttun using script? or I need to put the <div> back. Thanks,
 }
 
 // Connect the handler to the form:
