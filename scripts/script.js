@@ -1,26 +1,22 @@
 //call and dismiss the form//
 
-let container=document.querySelector('.container');
-let editButton=container.querySelector('.profile__button-sqr');
-let editForm=container.querySelector('.edit');
-let cancelButton=container.querySelector('.edit__icon');
-
-
-function displayEdit(){
-    editForm.classList.remove('edit__hidden');
-}
-function hiddenEdit(){
-    editForm.classList.add('edit__hidden');
-}
-
-
-editButton.addEventListener("click",displayEdit);
-cancelButton.addEventListener("click",hiddenEdit);
-
-
-
+const container=document.querySelector('.container');
+const editButton=container.querySelector('.profile__button-sqr');
 // Let's find the form in the DOM
-let formElement = container.querySelector('.edit');
+let formElement=container.querySelector('.edit');
+const cancelButton=container.querySelector('.edit__button-icon');
+const saveButton=container.querySelector('.edit__button');
+
+
+function callEdit(){
+    formElement.classList.toggle('hidden');
+}
+
+editButton.addEventListener("click",callEdit);
+cancelButton.addEventListener("click",callEdit);
+saveButton.addEventListener('click',callEdit); 
+
+
 
 // Next is the form submit handler, though
 // it won't submit anywhere just yet
@@ -30,22 +26,21 @@ function formSubmitHandler (evt) {
                                                 // We'll explain it in more detail later.
 
     // Let's find the form fields in the DOM
-    let nameInput = container.querySelector('#name');
-    let jobInput = container.querySelector('#job');// Use querySelector()
-    console.log(nameInput.value);
+    let nameInput = container.querySelector('.edit__input-name');
+    let jobInput = container.querySelector('.edit__input-job');// Use querySelector()
     // Get the values of each field from the corresponding value property
     let name = nameInput.value;
     let job = jobInput.value;
     // Select elements where the field values will be entered
     let titleToChange=container.querySelector('.profile__title');
-    let subtitleToChange=container.querySelector('.profile_subtitle') 
+    let subtitleToChange=container.querySelector('.profile_subtitle'); 
     // Insert new values using the textContent property of the querySelector() method
-    titleToChange.innerHTML=name;
-    subtitleToChange.innerHTML=job;
+    titleToChange.textContent=name;
+    subtitleToChange.textContent=job;
 }
 
 // Connect the handler to the form:
 // it will watch the submit event
 formElement.addEventListener('submit', formSubmitHandler);
-let saveButton=container.querySelector('.edit__button');
-saveButton.addEventListener('click',hiddenEdit); 
+
+
