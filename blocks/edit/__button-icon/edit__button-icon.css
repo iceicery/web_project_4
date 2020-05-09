@@ -1,0 +1,22 @@
+.edit__button-icon{
+    all:unset;
+    position: absolute;
+    top:-40px;
+    right:-40px;
+}
+
+.edit_button-icon:hover{
+    opacity: 0.6;
+    cursor:pointer;
+}
+
+
+
+@media screen and (max-width:425px){
+    .edit__button-icon{
+        right:0;
+    }
+}
+
+
+

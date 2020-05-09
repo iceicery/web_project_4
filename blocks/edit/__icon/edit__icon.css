@@ -1,21 +1,8 @@
 .edit__icon{
-    position: absolute;
-    top:-40px;
-    right:-40px;
+    
    
     width:40px;
     height:40px;
     
     background-color: black;
-}
-.edit__icon:hover{
-    opacity: 0.6;
-    cursor:pointer;
-}
-
-@media screen and (max-width:425px){
-    .edit__icon{
-        right:0;
-    }
-
 }
