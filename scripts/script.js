@@ -3,7 +3,7 @@
 const container=document.querySelector('.container');
 const editButton=container.querySelector('.profile__button-sqr');
 // Let's find the form in the DOM
-let formElement=container.querySelector('.edit');
+const formElement=container.querySelector('.edit');
 const cancelButton=container.querySelector('.edit__button-icon');
 const saveButton=container.querySelector('.edit__button');
 
@@ -33,15 +33,10 @@ function formSubmitHandler (evt) {
     let job = jobInput.value;
     // Select elements where the field values will be entered
     let titleToChange=container.querySelector('.profile__title');
-    let subtitleToChange=container.querySelector('.profile_subtitle'); 
+    let subtitleToChange=container.querySelector('.profile__subtitle'); 
     // Insert new values using the textContent property of the querySelector() method
     titleToChange.textContent=name;
     subtitleToChange.textContent=job;
-
-    //???????????????? Question ???????????????????????????????????????????//
-    //I was told to delete one of unneccesary <div> which I wrap title and button, now I put the button inside the <h1> for better aligning title and the button
-    //But when user input a value, it will overwrite the button.
-    //Is this a way to keep my title buttun using script? or I need to put the <div> back. Thanks,
 }
 
 // Connect the handler to the form:

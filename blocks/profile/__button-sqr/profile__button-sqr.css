@@ -4,9 +4,9 @@
      width: 24px;
      height: 24px;
      border:solid;
-     border-color: white;
+     border-color:#ffffff;
      border-width: 1px;
-     background-color: black;
+     background-color:#000000;
  
      display: flex;
      justify-content: center;

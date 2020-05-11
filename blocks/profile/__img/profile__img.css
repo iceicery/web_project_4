@@ -1,7 +1,7 @@
 .profile__img{
     border-radius: 50%;
-    width: 127.5px;
-    height:127.5px;
+    width: 128px;
+    height:128px;
     object-fit:contain;
     margin-right:calc(168.75px - 127.5px);
 }

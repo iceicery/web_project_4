@@ -5,8 +5,8 @@
 @import url('./__title/elements__title.css');
 
 .elements{
-    width:70%;
-    max-width: 1200px;
+    width:68.9%;
+    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -14,5 +14,4 @@
     .elements{
         width:88%;
     }
-   
 }
