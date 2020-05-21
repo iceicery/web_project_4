@@ -59,3 +59,17 @@ addButton.addEventListener('click',callAdd);
 createButton.addEventListener('click',callAdd);
 cancelAddButton.addEventListener('click',callAdd);
 
+//call the big picture while selected.
+
+const selectImg=container.querySelector('.elements__img');
+const cancelPicButton=container.querySelector('.bigPic__button-icon');
+const picElement=container.querySelector('.bigPic');
+const darkenDark=document.querySelector('.darken-dark');
+
+function callPic(){
+    picElement.classList.toggle('hidden');
+    darkenDark.classList.toggle('hidden');
+}
+
+selectImg.addEventListener('click',callPic);
+cancelPicButton.addEventListener('click',callPic);
