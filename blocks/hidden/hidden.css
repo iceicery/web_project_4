@@ -1,3 +1,6 @@
 .hidden{
-    display:none;
+    transition: opacity 3s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
 }
