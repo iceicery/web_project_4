@@ -73,3 +73,72 @@ function callPic(){
 
 selectImg.addEventListener('click',callPic);
 cancelPicButton.addEventListener('click',callPic);
+
+//add picture feature
+
+// initial picture array
+const initialCards = [
+    {
+        name: "Yosemite Valley",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lake Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Bald Mountains",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Vanois National Park",
+        link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
+];
+
+console.log(initialCards[0]['name']);
+console.log(initialCards[0]['link']);
+
+//add new input to initalCards when submit the form
+function inputToCards(evt){
+    evt.preventDefault();
+    let imgTitleValue=container.querySelector(".add__input-title").value;
+    let imgLinkValue=container.querySelector(".add__input-img").value;
+    //only add it if there are values 
+    if (!!imgTitleValue || !!imgLinkValue){
+    initialCards.push({name: imgTitleValue,link: imgLinkValue});
+    console.log(initialCards)
+    };
+}
+addElements.addEventListener('submit', inputToCards);
+
+console.log(initialCards);
+//initialCards[initialCards.length]['link']= "https://code.s3.yandex.net/web-code/lake-louise.jpg";
+//console.log(initialCards);
+//This is container for all the pictures
+//const imgContainer=container.querySelector(".elements__container");
+
+
+
+/*
+
+
+const imgContainer=container.querySelector(".elements__container");
+
+function addImg(name,link){
+    const imgTemplate=document.querySelector("#img-template").content;
+    const imgElement=imgTemplate.cloneNode(true);
+
+    imgElement.querySelector(".elements__title").textContent = imgTitleValue;
+    imgElement.querySelector(".elements__img").src = imgLinkValue;
+
+    imgContainer.append(imgElement);
+}*/
