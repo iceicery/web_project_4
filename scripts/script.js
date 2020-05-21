@@ -6,10 +6,12 @@ const editButton=container.querySelector('.profile__button-sqr');
 const formElement=container.querySelector('.edit');
 const cancelButton=container.querySelector('.edit__button-icon');
 const saveButton=container.querySelector('.edit__button');
+const darken=document.querySelector('.darken');
 
 
 function callEdit(){
     formElement.classList.toggle('hidden');
+    darken.classList.toggle('hidden');
 }
 
 editButton.addEventListener("click",callEdit);
