@@ -5,3 +5,8 @@
     padding-right: 29.87px;
     padding-bottom: 31px;
 }
+
+.elements__heart:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
