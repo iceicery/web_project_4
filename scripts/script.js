@@ -19,7 +19,6 @@ cancelButton.addEventListener("click",callEdit);
 saveButton.addEventListener('click',callEdit); 
 
 
-
 // Next is the form submit handler, though
 // it won't submit anywhere just yet
 function formSubmitHandler (evt) {
@@ -45,4 +44,18 @@ function formSubmitHandler (evt) {
 // it will watch the submit event
 formElement.addEventListener('submit', formSubmitHandler);
 
+//call edit places form
+const addButton=container.querySelector('.profile__button-reg');
+const addElements=container.querySelector('.add');
+const createButton=container.querySelector('.add__button');
+const cancelAddButton=container.querySelector('.add__button-icon');
+
+function callAdd(){
+    addElements.classList.toggle('hidden');
+    darken.classList.toggle('hidden');
+}
+
+addButton.addEventListener('click',callAdd);
+createButton.addEventListener('click',callAdd);
+cancelAddButton.addEventListener('click',callAdd);
 
