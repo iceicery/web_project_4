@@ -59,22 +59,10 @@ addButton.addEventListener('click',callAdd);
 createButton.addEventListener('click',callAdd);
 cancelAddButton.addEventListener('click',callAdd);
 
-//call the big picture while selected.
-/*
-const selectImg=container.querySelector('.elements__img');
-const cancelPicButton=container.querySelector('.bigPic__button-icon');
-const picElement=container.querySelector('.bigPic');
-const darkenDark=document.querySelector('.darken-dark');
 
-function callPic(){
-    picElement.classList.toggle('hidden');
-    darkenDark.classList.toggle('hidden');
-}
-
-selectImg.addEventListener('click',callPic);
-cancelPicButton.addEventListener('click',callPic);
-*/
+/**********************************
 //add picture feature
+**************************************/
 
 // initial picture array
 const initialCards = [
@@ -110,15 +98,50 @@ Add the initial array elements to html
 
 const imgContainer=container.querySelector(".elements__container");
 
-//addImg function add elements to the end of <ul> 
+//const selectImg=container.querySelector('.elements__img');
+//const cancelPicButton=container.querySelector('.bigPic__button-icon');
+//const picElement=container.querySelector('.bigPic');
+const darkenDark=document.querySelector('.darken-dark');
+
+
+
+//addImg function: add elements to the end of <ul> 
+//                  also add enlarge elements to the end of <main> 
 function addImg(name,link){
+    //template for image elements
     const imgTemplate=document.querySelector("#img-template").content;
     const imgElement=imgTemplate.cloneNode(true);
 
+    const selectImg=imgElement.querySelector('.elements__img');
+    
     imgElement.querySelector(".elements__title").textContent = name;
-    imgElement.querySelector(".elements__img").src = link;
+    selectImg.src = link;
 
     imgContainer.append(imgElement);
+
+    //template for enlarge image
+    const bigPicTemplate=document.querySelector('#bigPic-template').content;
+    const bigPicElement=bigPicTemplate.cloneNode(true);
+
+    const cancelPicButton=bigPicElement.querySelector(".bigPic__button-icon");
+    const picElement=bigPicElement.querySelector(".bigPic");
+
+    bigPicElement.querySelector(".bigPic__title").textContent= name;
+    bigPicElement.querySelector(".bigPic__img").src= link;
+
+    container.append(bigPicElement);
+    
+
+    //callPic fuction: call enlarge image
+    function callPic(){
+    picElement.classList.toggle('hidden');
+    darkenDark.classList.toggle('hidden');
+    }
+
+    //activate select img fuction
+    selectImg.addEventListener('click',callPic);
+    //activate cancel function
+    cancelPicButton.addEventListener('click',callPic);
 }
 //call addImg function to add initial elements one by one in the end
 for (let i=0 ; i< initialCards.length ; i++ ){
@@ -126,20 +149,45 @@ for (let i=0 ; i< initialCards.length ; i++ ){
  }
 
 /***
-Add new input to initalCards when submit the form
+Add a new input to initalCards when submit the form
 ***/
 
-//addImgBegin function add elements in the begining of <ul>
+//addImgBegin function add elements in the begining of <ul> special made for new input image
  function addImgBegin(name,link){
+     //template for each image items
     const imgTemplate=document.querySelector("#img-template").content;
     const imgElement=imgTemplate.cloneNode(true);
+    const selectImg=imgElement.querySelector('.elements__img');
 
     imgElement.querySelector(".elements__title").textContent = name;
-    imgElement.querySelector(".elements__img").src = link;
-
+    selectImg.src = link;
     imgContainer.prepend(imgElement);
-}
 
+    //template for enlarge image
+    const bigPicTemplate=document.querySelector('#bigPic-template').content;
+    const bigPicElement=bigPicTemplate.cloneNode(true);
+
+    const cancelPicButton=bigPicElement.querySelector(".bigPic__button-icon");
+    const picElement=bigPicElement.querySelector(".bigPic");
+
+    bigPicElement.querySelector(".bigPic__title").textContent= name;
+    bigPicElement.querySelector(".bigPic__img").src= link;
+
+    container.append(bigPicElement);
+
+    //callPic fuction: call enlarge image
+    function callPic(){
+        picElement.classList.toggle('hidden');
+        darkenDark.classList.toggle('hidden');
+        }
+    
+        //activate select img fuction
+        selectImg.addEventListener('click',callPic);
+        //activate cancel function
+        cancelPicButton.addEventListener('click',callPic);
+}
+// inputToCards:add new intput to initialCards array and ativate the addImgBegin function
+//
 function inputToCards(evt){
     evt.preventDefault();
     let imgTitleValue=container.querySelector(".add__input-title").value;
@@ -147,14 +195,16 @@ function inputToCards(evt){
     //only add it if there are values and link
     if ((!!imgTitleValue || !!imgLinkValue) && imgLinkValue.includes('http')){
     initialCards.unshift({name: imgTitleValue,link: imgLinkValue});
-    console.log(initialCards); //test
-    //add image to <ul> in the beginning one at a time
+    //add image to <ul> in the beginning one at a time 
     addImgBegin(initialCards[0]['name'],initialCards[0]['link']);
     }
 }
+//submit 
 addElements.addEventListener('submit', inputToCards);
 
-
+/****
+ * Remove feature:remove image elements while clicking trash icon
+ ****/
 
 
 
