@@ -60,7 +60,7 @@ createButton.addEventListener('click',callAdd);
 cancelAddButton.addEventListener('click',callAdd);
 
 //call the big picture while selected.
-
+/*
 const selectImg=container.querySelector('.elements__img');
 const cancelPicButton=container.querySelector('.bigPic__button-icon');
 const picElement=container.querySelector('.bigPic');
@@ -73,7 +73,7 @@ function callPic(){
 
 selectImg.addEventListener('click',callPic);
 cancelPicButton.addEventListener('click',callPic);
-
+*/
 //add picture feature
 
 // initial picture array
@@ -95,7 +95,7 @@ const initialCards = [
         link: "https://code.s3.yandex.net/web-code/latemar.jpg"
     },
     {
-        name: "Vanois National Park",
+        name: "Vanois National...",
         link: "https://code.s3.yandex.net/web-code/vanois.jpg"
     },
     {
@@ -104,41 +104,57 @@ const initialCards = [
     }
 ];
 
-console.log(initialCards[0]['name']);
-console.log(initialCards[0]['link']);
-
-//add new input to initalCards when submit the form
-function inputToCards(evt){
-    evt.preventDefault();
-    let imgTitleValue=container.querySelector(".add__input-title").value;
-    let imgLinkValue=container.querySelector(".add__input-img").value;
-    //only add it if there are values 
-    if (!!imgTitleValue || !!imgLinkValue){
-    initialCards.push({name: imgTitleValue,link: imgLinkValue});
-    console.log(initialCards)
-    };
-}
-addElements.addEventListener('submit', inputToCards);
-
-console.log(initialCards);
-//initialCards[initialCards.length]['link']= "https://code.s3.yandex.net/web-code/lake-louise.jpg";
-//console.log(initialCards);
-//This is container for all the pictures
-//const imgContainer=container.querySelector(".elements__container");
-
-
-
-/*
-
+/***
+Add the initial array elements to html
+***/
 
 const imgContainer=container.querySelector(".elements__container");
 
+//addImg function add elements to the end of <ul> 
 function addImg(name,link){
     const imgTemplate=document.querySelector("#img-template").content;
     const imgElement=imgTemplate.cloneNode(true);
 
-    imgElement.querySelector(".elements__title").textContent = imgTitleValue;
-    imgElement.querySelector(".elements__img").src = imgLinkValue;
+    imgElement.querySelector(".elements__title").textContent = name;
+    imgElement.querySelector(".elements__img").src = link;
 
     imgContainer.append(imgElement);
-}*/
+}
+//call addImg function to add initial elements one by one in the end
+for (let i=0 ; i< initialCards.length ; i++ ){
+    addImg(initialCards[i]['name'],initialCards[i]['link']);
+ }
+
+/***
+Add new input to initalCards when submit the form
+***/
+
+//addImgBegin function add elements in the begining of <ul>
+ function addImgBegin(name,link){
+    const imgTemplate=document.querySelector("#img-template").content;
+    const imgElement=imgTemplate.cloneNode(true);
+
+    imgElement.querySelector(".elements__title").textContent = name;
+    imgElement.querySelector(".elements__img").src = link;
+
+    imgContainer.prepend(imgElement);
+}
+
+function inputToCards(evt){
+    evt.preventDefault();
+    let imgTitleValue=container.querySelector(".add__input-title").value;
+    let imgLinkValue=container.querySelector(".add__input-img").value;
+    //only add it if there are values and link
+    if ((!!imgTitleValue || !!imgLinkValue) && imgLinkValue.includes('http')){
+    initialCards.unshift({name: imgTitleValue,link: imgLinkValue});
+    console.log(initialCards); //test
+    //add image to <ul> in the beginning one at a time
+    addImgBegin(initialCards[0]['name'],initialCards[0]['link']);
+    }
+}
+addElements.addEventListener('submit', inputToCards);
+
+
+
+
+
