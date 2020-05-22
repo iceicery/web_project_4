@@ -97,13 +97,7 @@ Add the initial array elements to html
 ***/
 
 const imgContainer=container.querySelector(".elements__container");
-
-//const selectImg=container.querySelector('.elements__img');
-//const cancelPicButton=container.querySelector('.bigPic__button-icon');
-//const picElement=container.querySelector('.bigPic');
 const darkenDark=document.querySelector('.darken-dark');
-
-
 
 //addImg function: add elements to the end of <ul> 
 //                  also add enlarge elements to the end of <main> 
@@ -111,8 +105,10 @@ function addImg(name,link){
     //template for image elements
     const imgTemplate=document.querySelector("#img-template").content;
     const imgElement=imgTemplate.cloneNode(true);
-
+    const imgItem=imgElement.querySelector('.elements__item');
     const selectImg=imgElement.querySelector('.elements__img');
+    const imgRemove=imgElement.querySelector('.elements__trash');
+    const imgLike=imgElement.querySelector('.elements__heart');
     
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
@@ -132,16 +128,24 @@ function addImg(name,link){
     container.append(bigPicElement);
     
 
-    //callPic fuction: call enlarge image
+    //callPic function: call enlarge image
     function callPic(){
     picElement.classList.toggle('hidden');
     darkenDark.classList.toggle('hidden');
     }
-
     //activate select img fuction
     selectImg.addEventListener('click',callPic);
     //activate cancel function
     cancelPicButton.addEventListener('click',callPic);
+
+    /* Not a good method to remove image bc it is not remove from the list.
+    /removePic function: hide the selected element
+    function removePic(){
+        imgItem.classList.toggle('hidden');
+    }
+    //activate remove fuction
+    imgRemove.addEventListener('click',removePic);*/
+
 }
 //call addImg function to add initial elements one by one in the end
 for (let i=0 ; i< initialCards.length ; i++ ){
@@ -204,7 +208,20 @@ addElements.addEventListener('submit', inputToCards);
 
 /****
  * Remove feature:remove image elements while clicking trash icon
- ****/
+ 
+function removeToCards(evt){
+    evt.preventDefault();
+    //template for each image items
+    const imgTemplate=document.querySelector("#img-template").content;
+    const imgElement=imgTemplate.cloneNode(true);
+    const 
+    const imgRemove=imgElement.querySelector('.elements__trash');
+    //function to hide
+    function removeItem(index){
+       
+    }
 
+    imgRemove.addEventListener('click',)
+}
 
-
+**/
