@@ -148,14 +148,6 @@ function addImg(name,link){
         imgItem.remove();
     })
         
-    /* Not a good method to remove image bc it is not remove from the list.
-    /removePic function: hide the selected element
-    function removePic(){
-        imgItem.classList.toggle('hidden');
-    }
-    //activate remove fuction
-    imgRemove.addEventListener('click',removePic);*/
-
 }
 //call addImg function to add initial elements one by one in the end
 for (let i=0 ; i< initialCards.length ; i++ ){
@@ -229,22 +221,3 @@ function inputToCards(evt){
 //submit 
 addElements.addEventListener('submit', inputToCards);
 
-/****
- * Remove feature:remove image elements while clicking trash icon
- 
-function removeToCards(evt){
-    evt.preventDefault();
-    //template for each image items
-    const imgTemplate=document.querySelector("#img-template").content;
-    const imgElement=imgTemplate.cloneNode(true);
-    const 
-    const imgRemove=imgElement.querySelector('.elements__trash');
-    //function to hide
-    function removeItem(index){
-       
-    }
-
-    imgRemove.addEventListener('click',)
-}
-
-**/
