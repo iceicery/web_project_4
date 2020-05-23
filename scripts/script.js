@@ -125,19 +125,29 @@ function addImg(name,link){
     bigPicElement.querySelector(".bigPic__title").textContent= name;
     bigPicElement.querySelector(".bigPic__img").src= link;
 
-    container.append(bigPicElement);
-    
+    container.append(bigPicElement);    
 
     //callPic function: call enlarge image
     function callPic(){
     picElement.classList.toggle('hidden');
     darkenDark.classList.toggle('hidden');
     }
+  
     //activate select img fuction
     selectImg.addEventListener('click',callPic);
     //activate cancel function
     cancelPicButton.addEventListener('click',callPic);
-
+    
+    //like items
+    imgLike.addEventListener('click',function(evt){
+        evt.target.classList.toggle('elements__heart_active');
+    })
+    
+    //remove items
+    imgRemove.addEventListener('click',function(){
+        imgItem.remove();
+    })
+        
     /* Not a good method to remove image bc it is not remove from the list.
     /removePic function: hide the selected element
     function removePic(){
@@ -161,7 +171,10 @@ Add a new input to initalCards when submit the form
      //template for each image items
     const imgTemplate=document.querySelector("#img-template").content;
     const imgElement=imgTemplate.cloneNode(true);
+    const imgItem=imgElement.querySelector('.elements__item');
     const selectImg=imgElement.querySelector('.elements__img');
+    const imgRemove=imgElement.querySelector('.elements__trash');
+    const imgLike=imgElement.querySelector('.elements__heart');
 
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
@@ -189,6 +202,16 @@ Add a new input to initalCards when submit the form
         selectImg.addEventListener('click',callPic);
         //activate cancel function
         cancelPicButton.addEventListener('click',callPic);
+        
+        //like items
+    imgLike.addEventListener('click',function(evt){
+        evt.target.classList.toggle('elements__heart_active');
+    })
+
+        //remove items
+    imgRemove.addEventListener('click',function(){
+        imgItem.remove();
+    })
 }
 // inputToCards:add new intput to initialCards array and ativate the addImgBegin function
 //
