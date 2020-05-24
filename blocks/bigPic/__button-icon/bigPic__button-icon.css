@@ -1,0 +1,14 @@
+.bigPic__button-icon{
+    all:unset;
+    position: absolute;
+    top:-40px;
+    right:-40px;
+  }
+  
+  
+  @media screen and (max-width:425px){
+    .bigPic__button-icon{
+        top:-30px;
+        right:0;
+    }
+  }
