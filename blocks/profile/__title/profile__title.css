@@ -10,7 +10,7 @@
     .profile__title{
         font-weight: 500;
         font-size: 22px;
-        line-height: calc(56/42);
+        line-height: calc(56 / 42);
     }
     
 }
