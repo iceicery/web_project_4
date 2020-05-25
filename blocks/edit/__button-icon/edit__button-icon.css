@@ -22,7 +22,8 @@
     .edit__button-icon{
         width: 30px;
         height: 30px;
-        right:0;
+        top:-30px;
+        right:-30px;
         
     }
 }

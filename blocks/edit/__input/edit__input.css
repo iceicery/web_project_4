@@ -14,3 +14,12 @@
 .edit__input:focus{
     outline:solid 1px #2F80ED;
 }
+
+@media screen and (max-width:425px){
+    .edit__input{
+      margin-top:16px;
+      font-size: 12px;
+      line-height: 15px;
+      height:24px;
+    }
+  }
