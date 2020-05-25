@@ -16,67 +16,18 @@
         <section class="profile">                                  
             <img src="images/explorer.jpg" alt="explorer" class="profile__img">
             <div class="profile__text-container">
-                <div class="profile__title-box"><h1 class="profile__title">Jacques Cousteau</h1><button class="profile__button-sqr"><img src="images/pen.svg" alt="pen" class="profile__button-pen"></button></div>
+                <div class="profile__title-box"><h1 class="profile__title">Jacques Cousteau</h1><button class="profile__button-sqr"></button></div>
                 <p class="profile__subtitle">Explorer</p>
             </div>
-            <button class="profile__button-reg"><img src="images/button.svg" alt="button" class="profile__button-plus"></button>
+            <button class="profile__button-reg"></button>
         </section>
         <section class="elements">
             <ul class="elements__container">
-                <!--The following is for last assignment. Use JavaScripts and <template> instead.
-                <li class="elements__item">
-                    <img src="./images/yosemite.jpg" alt="yosemite" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Yosemite Valley</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img src="./images/lake_louise.jpg" alt="lake_louise" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Lake Louise</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img src="./images/bald_mountains.jpg" alt="bald_mountains" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Bald Mountains</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img src="./images/latemar.jpg" alt="latemar" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Latemar</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img src="./images/vanois.jpg" alt="vanois" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Vanois National...</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img src="./images/lago_di_braies.jpg" alt="lago_di_braies" class="elements__img">
-                    <img src="./images/trash.svg" alt="trash" class="elements__trash">
-                    <div class="elements__title-box">
-                        <h2 class="elements__title">Lago di Braies</h2>
-                        <img src="./images/heart.svg" alt="heart" class="elements__heart">
-                    </div>
-                </li>
-            -->
+                <!--elements from img-template will be put here.-->
             </ul>
         </section>
         <section class="edit hidden">
-            <button class="edit__button-icon"><img src="images/Icon.svg" alt="icon" class="edit__icon"></button>
+            <button class="edit__button-icon"></button>
             <form class="edit__form">
             <h2 class="edit__title">Edit profile</h2>
             <input type="text" id="name" class="edit__input edit__input-name" value="Jacques Cousteau">
@@ -85,7 +36,7 @@
             </form>
         </section>
         <section class="add hidden">
-            <button class="add__button-icon"><img src="images/Icon.svg" alt="icon" class="add__icon"></button>
+            <button class="add__button-icon"></button>
             <form class="add__form">
             <h2 class="add__title">New Place</h2>
             <input type="text" id="title" class="add__input add__input-title" placeholder="Title">
@@ -100,7 +51,7 @@
         <template id="img-template">
             <li class="elements__item">
                 <img src="./images/lago_di_braies.jpg" alt="lago_di_braies" class="elements__img">
-                <img src="./images/trash.svg" alt="trash" class="elements__trash">
+                <button class="elements__trash"></button>
                 <div class="elements__title-box">
                     <h2 class="elements__title">Lago di Braies</h2>
                     <button class="elements__heart"></button>
@@ -109,7 +60,7 @@
         </template>
         <template id="bigPic-template">
             <section class="bigPic hidden">
-            <button class="bigPic__button-icon"><img src="images/Icon.svg" alt="icon" class="bigPic__icon"></button>
+            <button class="bigPic__button-icon"></button>
             <img src="./images/yosemite.jpg" alt="yosemite" class="bigPic__img">
             <p class="bigPic__title">Yosemite Valley</p>
             </section>

@@ -1,4 +1,9 @@
 .profile__button-reg{
+    all:reset;
+    background-image:url('../../../images/button.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px 22px;
     margin-right: 0;
     margin-left:auto;
     width:150px;
@@ -7,9 +12,7 @@
     border-color: white;
     border-width: 1px;
     background-color: black;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .profile__button-reg:hover{

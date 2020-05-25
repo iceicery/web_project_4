@@ -1,16 +1,17 @@
 .profile__button-sqr{
+    all:reset;
     margin-left:24px;
- 
-     width: 24px;
-     height: 24px;
-     border:solid;
-     border-color:#ffffff;
-     border-width: 1px;
-     background-color:#000000;
- 
-     display: flex;
-     justify-content: center;
-     align-items: center;
+    background-image: url(../../../images/pen.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 10px;
+    width: 24px;
+    height: 24px;
+    border:solid;
+    border-color: white;
+    border-width: 1px;      
+    background-color:#000000;
+
  }
  .profile__button-sqr:hover{
      opacity: 0.6;
@@ -19,6 +20,7 @@
  
  @media screen and (max-width:425px){
      .profile__button-sqr{
+         background-size: 8px 8px;
          margin-left: 12px;
          width:18px;
          height: 18px;
