@@ -7,6 +7,12 @@ const formElement=container.querySelector('.edit');
 const cancelButton=container.querySelector('.edit__button-icon');
 const saveButton=container.querySelector('.edit__button');
 const darken=document.querySelector('.darken');
+// Let's find the form fields in the DOM
+const nameInput = container.querySelector('.edit__input-name');
+const jobInput = container.querySelector('.edit__input-job');
+// Select elements where the field values will be entered
+const titleToChange=container.querySelector('.profile__title');
+const subtitleToChange=container.querySelector('.profile__subtitle'); 
 
 
 function callEdit(){
@@ -25,19 +31,11 @@ function formSubmitHandler (evt) {
     evt.preventDefault(); // This line stops the browser from submitting the form in the default way.
                                                 // Having done so, we can define our own way of submitting the form.
                                                 // We'll explain it in more detail later.
-
-    // Let's find the form fields in the DOM
-    let nameInput = container.querySelector('.edit__input-name');
-    let jobInput = container.querySelector('.edit__input-job');// Use querySelector()
-    // Get the values of each field from the corresponding value property
-    let name = nameInput.value;
-    let job = jobInput.value;
-    // Select elements where the field values will be entered
-    let titleToChange=container.querySelector('.profile__title');
-    let subtitleToChange=container.querySelector('.profile__subtitle'); 
+    
+    
     // Insert new values using the textContent property of the querySelector() method
-    titleToChange.textContent=name;
-    subtitleToChange.textContent=job;
+    titleToChange.textContent=nameInput.value;
+    subtitleToChange.textContent=jobInput.value;
 }
 
 // Connect the handler to the form:
@@ -209,8 +207,8 @@ Add a new input to initalCards when submit the form
 //
 function inputToCards(evt){
     evt.preventDefault();
-    let imgTitleValue=container.querySelector(".add__input-title").value;
-    let imgLinkValue=container.querySelector(".add__input-img").value;
+    const imgTitleValue=container.querySelector(".add__input-title").value;
+    const imgLinkValue=container.querySelector(".add__input-img").value;
     //only add it if there are values and link
     if ((!!imgTitleValue || !!imgLinkValue) && imgLinkValue.includes('http')){
     initialCards.unshift({name: imgTitleValue,link: imgLinkValue});
