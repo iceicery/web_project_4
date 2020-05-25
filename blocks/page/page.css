@@ -5,6 +5,9 @@
     font-family: 'Inter', Arial, sans-serif;
     color: #FFFFFF;
     font-style: normal;
+
+    height: 100%;
+    position: relative;
   }
 
   
