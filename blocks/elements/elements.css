@@ -5,15 +5,15 @@
 @import url('./__title/elements__title.css');
 @import url('./__item/elements__item.css');
 @import url('./__trash/elements__trash.css');
-
-.elements{
-    width:68.9%;
+.elements {
+    width: 68.9%;
     max-width: 882px;
     margin-left: auto;
     margin-right: auto;
 }
-@media screen and (max-width:425px){
-    .elements{
-        width:88%;
+
+@media screen and (max-width:425px) {
+    .elements {
+        width: 88%;
     }
 }

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="./pages/index.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Around the U.S.</title>
-    </head>
-    <body class="page">
-        <div class="darken hidden"></div>
-        <div class="darken-dark hidden"></div>
-        <header class="header">
-            <img src="./images/Vector.svg" alt="logo" class="header__logo">
-        </header>
-        <main class="container">
-        <section class="profile">                                  
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the U.S.</title>
+</head>
+
+<body class="page">
+    <div class="darken hidden"></div>
+    <div class="darken-dark hidden"></div>
+    <header class="header">
+        <img src="./images/Vector.svg" alt="logo" class="header__logo">
+    </header>
+    <main class="container">
+        <section class="profile">
             <img src="images/explorer.jpg" alt="explorer" class="profile__img">
             <div class="profile__text-container">
-                <div class="profile__title-box"><h1 class="profile__title">Jacques Cousteau</h1><button class="profile__button-sqr"></button></div>
+                <div class="profile__title-box">
+                    <h1 class="profile__title">Jacques Cousteau</h1><button class="profile__button-sqr"></button>
+                </div>
                 <p class="profile__subtitle">Explorer</p>
             </div>
             <button class="profile__button-reg"></button>
@@ -29,42 +33,43 @@
         <section class="edit hidden">
             <button class="edit__button-icon"></button>
             <form class="edit__form">
-            <h2 class="edit__title">Edit profile</h2>
-            <input type="text" id="name" class="edit__input edit__input-name" value="Jacques Cousteau">
-            <input type="text" id="job" class="edit__input edit__input-job" value="Explorer">
-            <button class="edit__button">Save</button>
+                <h2 class="edit__title">Edit profile</h2>
+                <input type="text" id="name" class="edit__input edit__input-name" value="Jacques Cousteau">
+                <input type="text" id="job" class="edit__input edit__input-job" value="Explorer">
+                <button class="edit__button">Save</button>
             </form>
         </section>
         <section class="add hidden">
             <button class="add__button-icon"></button>
             <form class="add__form">
-            <h2 class="add__title">New Place</h2>
-            <input type="text" id="title" class="add__input add__input-title" placeholder="Title" value="">
-            <input type="text" id="link" class="add__input add__input-img" placeholder="Image link" value="">
-            <button class="add__button">Create</button>
+                <h2 class="add__title">New Place</h2>
+                <input type="text" id="title" class="add__input add__input-title" placeholder="Title" value="">
+                <input type="text" id="link" class="add__input add__input-img" placeholder="Image link" value="">
+                <button class="add__button">Create</button>
             </form>
         </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__text">© 2020 Around The U.S.</p>
-        </footer>
-        <template id="img-template">
-            <li class="elements__item">
-                <img src="./images/lago_di_braies.jpg" alt="BeautifulPicture" class="elements__img">
-                <button class="elements__trash"></button>
-                <div class="elements__title-box">
-                    <h2 class="elements__title">Lago di Braies</h2>
-                    <button class="elements__heart"></button>
-                </div>
-            </li>
-        </template>
-        <template id="bigPic-template">
-            <section class="bigPic hidden">
+    </main>
+    <footer class="footer">
+        <p class="footer__text">© 2020 Around The U.S.</p>
+    </footer>
+    <template id="img-template">
+        <li class="elements__item">
+            <img src="./images/lago_di_braies.jpg" alt="BeautifulPicture" class="elements__img">
+            <button class="elements__trash"></button>
+            <div class="elements__title-box">
+                <h2 class="elements__title">Lago di Braies</h2>
+                <button class="elements__heart"></button>
+            </div>
+        </li>
+    </template>
+    <template id="bigPic-template">
+        <section class="bigPic hidden">
             <button class="bigPic__button-icon"></button>
             <img src="./images/yosemite.jpg" alt="BigPicture" class="bigPic__img">
             <p class="bigPic__title">Yosemite Valley</p>
-            </section>
-        </template>
-        <script src="./scripts/script.js"></script>
-    </body>
+        </section>
+    </template>
+    <script src="./scripts/script.js"></script>
+</body>
+
 </html>

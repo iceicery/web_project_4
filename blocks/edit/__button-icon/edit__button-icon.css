@@ -1,33 +1,26 @@
-.edit__button-icon{
-    all:unset;
+.edit__button-icon {
+    all: unset;
     background-image: url('../../../images/Icon.svg');
     background-position: center;
     object-fit: contain;
-    width:40px;
-    height:40px;
-    background-color:#000;
+    width: 40px;
+    height: 40px;
+    background-color: #000;
     position: absolute;
-    top:-40px;
-    right:-40px;
+    top: -40px;
+    right: -40px;
 }
 
-.edit__button-icon:hover{
-    opacity: 0.6;
-    cursor:pointer;
-
+.edit__button-icon:hover {
+    opacity: .6;
+    cursor: pointer;
 }
 
-
-@media screen and (max-width:425px){
-    .edit__button-icon{
+@media screen and (max-width:425px) {
+    .edit__button-icon {
         width: 30px;
         height: 30px;
-        top:-30px;
-        right:-30px;
-        
+        top: -30px;
+        right: -30px;
     }
 }
-
-
-
-

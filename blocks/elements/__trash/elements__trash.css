@@ -1,15 +1,16 @@
-.elements__trash{
-    all:unset;
-    position: absolute;
-    top:18px;
-    right:15px;
-    background-image: url('../../../images/trash.svg');
-    background-position: center;
-    object-fit: contain;
-    width: 18px;
-    height:19.5px;
-  }
-  .elements__trash:hover{
-    opacity: 0.6;
-    cursor: pointer;
-  }
+.elements__trash {
+  all: unset;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background-image: url('../../../images/trash.svg');
+  background-position: center;
+  object-fit: contain;
+  width: 18px;
+  height: 19.5px;
+}
+
+.elements__trash:hover {
+  opacity: .6;
+  cursor: pointer;
+}

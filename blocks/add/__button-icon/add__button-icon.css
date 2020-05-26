@@ -1,29 +1,25 @@
-.add__button-icon{
-    all:unset;
-    background-image: url('../../../images/Icon.svg');
-    background-position: center;
-    object-fit: contain;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    top:-40px;
-    right:-40px;
-  }
-  
-  .add__button-icon:hover{
-    opacity: 0.6;
-    cursor:pointer;
-
+.add__button-icon {
+  all: unset;
+  background-image: url('../../../images/Icon.svg');
+  background-position: center;
+  object-fit: contain;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -40px;
+  right: -40px;
 }
 
-  
-  
-  @media screen and (max-width:425px){
-    .add__button-icon{
-        width: 30px;
-        height: 30px;
-        top:-30px;
-        right:-30px;
-    }
+.add__button-icon:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width:425px) {
+  .add__button-icon {
+    width: 30px;
+    height: 30px;
+    top: -30px;
+    right: -30px;
   }
-  
+}

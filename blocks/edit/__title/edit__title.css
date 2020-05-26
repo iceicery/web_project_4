@@ -1,16 +1,14 @@
-.edit__title{
-    margin-top:30px;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-
-    color: #000000;
+.edit__title {
+  margin-top: 30px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
 }
 
-@media screen and (max-width:425px){
-    .edit__title{
-      font-size: 18px;
-      line-height: 22px;
-    }
+@media screen and (max-width:425px) {
+  .edit__title {
+    font-size: 18px;
+    line-height: 22px;
   }
-
+}

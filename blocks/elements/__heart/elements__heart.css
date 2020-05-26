@@ -1,21 +1,21 @@
-.elements__heart{
-    all:unset;
+.elements__heart {
+    all: unset;
     background: url('../../../images/heart.svg');
     object-fit: contain;
     background-repeat: no-repeat;
-    width:20.76px;
-    height:18.13px;
-    margin-top:28px;
+    width: 20.76px;
+    height: 18.13px;
+    margin-top: 28px;
     margin-right: 29.87px;
-    margin-bottom: 28px;    
+    margin-bottom: 28px;
 }
 
-.elements__heart:hover{
-    opacity: 0.6;
+.elements__heart:hover {
+    opacity: .6;
     cursor: pointer;
 }
 
-.elements__heart_active{
+.elements__heart_active {
     background: url('../../../images/heart-dark.svg');
     opacity: 1;
-  }
+}
