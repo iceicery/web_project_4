@@ -27,14 +27,6 @@ const imgContainer = container.querySelector(".elements__container");
 const darkenDark = document.querySelector('.darken-dark');
 
 //submit create image form
-addElements.addEventListener('submit', function () {
-    console.log(imgTitleValue.value);
-});
-
-formElement.addEventListener('submit', function () {
-    console.log(nameInput.value);
-});
-
 function callEdit() {
     formElement.classList.toggle('hidden');
     darken.classList.toggle('hidden');
