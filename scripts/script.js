@@ -22,9 +22,13 @@ const imgTitleValue = container.querySelector(".add__input-title");
 const imgLinkValue = container.querySelector(".add__input-img");
 //template
 const imgTemplate = document.querySelector("#img-template").content;
-const bigPicTemplate = document.querySelector('#bigPic-template').content;
-const imgContainer = container.querySelector(".elements__container");
+const imgContainer = document.querySelector('.elements__container');
+//big picture fields in DOM
+const cancelPicButton = container.querySelector(".bigPic__button-icon");
+const picElement = container.querySelector(".bigPic");
 const darkenDark = document.querySelector('.darken-dark');
+const bigPicImg = container.querySelector('.bigPic__img');
+const bigPicTitle = container.querySelector('.bigPic__title');
 
 //submit create image form
 function callEdit() {
@@ -101,10 +105,6 @@ function createCard(name, link) {
     const selectImg = imgElement.querySelector('.elements__img');
     const imgRemove = imgElement.querySelector('.elements__trash');
     const imgLike = imgElement.querySelector('.elements__heart');
-    //clone template for enlarge image
-    const bigPicElement = bigPicTemplate.cloneNode(true);
-    const cancelPicButton = bigPicElement.querySelector(".bigPic__button-icon");
-    const picElement = bigPicElement.querySelector(".bigPic");
 
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
@@ -117,19 +117,11 @@ function createCard(name, link) {
     imgRemove.addEventListener('click', function () {
         imgItem.remove();
     });
-
-    //get the right elements to enlarge
-    bigPicElement.querySelector(".bigPic__title").textContent = name;
-    bigPicElement.querySelector(".bigPic__img").src = link;
-
     //select image and call enlarge popup
     selectImg.addEventListener('click', function () {
-        container.append(bigPicElement);
-        picElement.classList.toggle('hidden');
-        darkenDark.classList.toggle('hidden');
-    });
-    //cancel enlarge popup
-    cancelPicButton.addEventListener('click', function () {
+        //get the right elements to enlarge
+        bigPicTitle.textContent = name;
+        bigPicTitle.src = link;
         picElement.classList.toggle('hidden');
         darkenDark.classList.toggle('hidden');
     });
@@ -143,18 +135,21 @@ function addImg(name, link) {
 
 
 //call addImg function to add initial elements one by one in the end
-for (let i = 0; i < initialCards.length; i++) {
-    addImg(initialCards[i]['name'], initialCards[i]['link']);
-}
+initialCards.forEach((card) => addImg(card.name, card.link));
+
 
 /***
 Add a new input to initalCards when submit the form
 ***/
 function inputToCards(evt) {
     evt.preventDefault();
-
     addImg(imgTitleValue.value, imgLinkValue.value);
 }
 //submit add image form
 addElements.addEventListener('submit', inputToCards);
 
+//cancel enlarge popup
+cancelPicButton.addEventListener('click', function () {
+    picElement.classList.toggle('hidden');
+    darkenDark.classList.toggle('hidden');
+});
