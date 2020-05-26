@@ -1,7 +1,7 @@
 .profile__button-sqr {
     all: reset;
     margin-left: 24px;
-    background-image: url(../../../images/pen.svg);
+    background-image: url('../../../images/pen.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 10px 10px;
