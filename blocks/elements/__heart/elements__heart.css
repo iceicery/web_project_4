@@ -1,6 +1,8 @@
 .elements__heart {
-    all: unset;
+    outline: none;
     background: url('../../../images/heart.svg');
+    background-color: #fff;
+    border: none;
     object-fit: contain;
     background-repeat: no-repeat;
     width: 20.76px;

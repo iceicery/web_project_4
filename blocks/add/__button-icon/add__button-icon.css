@@ -1,8 +1,9 @@
 .add__button-icon {
+  outline: none;
+  border: none;
   background-image: url('../../../images/Icon.svg');
   background-position: center;
   background-color: #000;
-  border: none;
   object-fit: contain;
   position: absolute;
   width: 40px;

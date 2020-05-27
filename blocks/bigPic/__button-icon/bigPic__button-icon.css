@@ -1,5 +1,6 @@
 .bigPic__button-icon {
-  all: unset;
+  outline: none;
+  border: none;
   background-image: url('../../../images/Icon.svg');
   background-position: center;
   object-fit: contain;

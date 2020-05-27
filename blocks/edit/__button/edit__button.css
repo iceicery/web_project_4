@@ -1,4 +1,5 @@
 .edit__button {
+  outline: none;
   margin-top: 48px;
   right: 0;
   background-color: #000;

@@ -1,5 +1,7 @@
 .elements__trash {
-  all: unset;
+  outline: none;
+  background-color: transparent;
+  border: none;
   position: absolute;
   top: 18px;
   right: 15px;

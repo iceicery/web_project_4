@@ -1,5 +1,5 @@
 .profile__button-sqr {
-    all: reset;
+    outline: none;
     margin-left: 24px;
     background-image: url('../../../images/pen.svg');
     background-repeat: no-repeat;
