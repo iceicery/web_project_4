@@ -32,10 +32,12 @@
         </section>
         <section class="edit hidden">
             <button class="edit__button-icon"></button>
-            <form class="edit__form">
+            <form class="edit__form" novalidate>
                 <h2 class="edit__title">Edit profile</h2>
-                <input type="text" id="name" class="edit__input edit__input-name" value="Jacques Cousteau">
-                <input type="text" id="job" class="edit__input edit__input-job" value="Explorer">
+                <input type="text" id="name" class="edit__input edit__input-name" value="Jacques Cousteau"  placeholder="Name" required minlength="2" maxlength="40">
+                <span class="edit__input-error" id="name-error"></span>
+                <input type="text" id="job" class="edit__input edit__input-job" value="Explorer" placeholder="About" required minlength="2" maxlength="200">
+                <span class="edit__input-error" id="job-error"></span>
                 <button class="edit__button">Save</button>
             </form>
         </section>

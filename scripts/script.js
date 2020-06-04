@@ -30,6 +30,7 @@ const darkenDark = document.querySelector('.darken-dark');
 const bigPicImg = container.querySelector('.bigPic__img');
 const bigPicTitle = container.querySelector('.bigPic__title');
 
+
 //submit create image form
 function callEdit() {
     formElement.classList.toggle('hidden');
@@ -41,8 +42,7 @@ cancelButton.addEventListener("click", callEdit);
 saveButton.addEventListener('click', callEdit);
 
 
-// Next is the form submit handler, though
-// it won't submit anywhere just yet
+//form submit handler
 function formSubmitHandler(evt) {
     evt.preventDefault();
     titleToChange.textContent = nameInput.value;
@@ -105,7 +105,7 @@ function createCard(name, link) {
     const selectImg = imgElement.querySelector('.elements__img');
     const imgRemove = imgElement.querySelector('.elements__trash');
     const imgLike = imgElement.querySelector('.elements__heart');
-
+    
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
     //like items
@@ -121,12 +121,13 @@ function createCard(name, link) {
     selectImg.addEventListener('click', function () {
         //get the right elements to enlarge
         bigPicTitle.textContent = name;
-        bigPicTitle.src = link;
+        bigPicImg.src = link;
         picElement.classList.toggle('hidden');
         darkenDark.classList.toggle('hidden');
     });
     return imgElement;
 }
+createCard();
 
 //addImg: add image elements to created card
 function addImg(name, link) {
@@ -141,6 +142,7 @@ initialCards.forEach((card) => addImg(card.name, card.link));
 /***
 Add a new input to initalCards when submit the form
 ***/
+
 function inputToCards(evt) {
     evt.preventDefault();
     addImg(imgTitleValue.value, imgLinkValue.value);
@@ -153,3 +155,48 @@ cancelPicButton.addEventListener('click', function () {
     picElement.classList.toggle('hidden');
     darkenDark.classList.toggle('hidden');
 });
+
+/**
+ * validating the "edit profile"
+ */
+
+const showInputError= (formElement, inputElement, errorMessage) =>{
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add("form__input_type_error");
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add("form__input-error_active");
+    console.log(errorElement);
+    console.log(inputElement);
+}
+
+//showInputError(formElement, nameInput, nameInput.validationMessage);
+const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove("form__input_type_error");
+    errorElement.classList.remove("form__input-error_active");
+    errorElement.textContent = "";
+}  
+
+const checkInputValidity=(formElement, inputElement) =>{
+    if (!inputElement.validity.valid){
+        showInputError(formElement, inputElement, inputElement.validationMessage);
+        console.log("Error");
+    }
+    else{
+        hideInputError(formElement, inputElement);
+        console.log("Good to go");
+    }
+}
+/*test
+nameInput.addEventListener("input",function(){
+    checkInputValidity(formElement,nameInput);
+})
+*/
+console.log(nameInput.value);
+//check if the whole form is valid
+const hasInvalidInput = (inputList) =>{
+    return inputList.some((inputElement)=>{
+        return !inputElement.validity.valid;
+    });
+}
+
