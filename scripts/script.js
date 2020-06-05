@@ -62,6 +62,23 @@ addButton.addEventListener('click', callAdd);
 createButton.addEventListener('click', callAdd);
 cancelAddButton.addEventListener('click', callAdd);
 
+//cancel form 
+const cancelForm = () => {
+    addElements.classList.add('hidden');
+    formElement.classList.add('hidden');
+    darken.classList.add('hidden');
+}
+const EscForm = (evt) => {
+    if (evt.key === 'Escape') {
+        cancelForm();
+        console.log("work");
+    }
+}
+
+darken.addEventListener('click', cancelForm);
+document.addEventListener('keydown', EscForm);
+
+
 /**********************************
 //add picture feature
 **************************************/
@@ -151,10 +168,15 @@ function inputToCards(evt) {
 addElements.addEventListener('submit', inputToCards);
 
 //cancel enlarge popup
-cancelPicButton.addEventListener('click', function () {
-    picElement.classList.toggle('hidden');
-    darkenDark.classList.toggle('hidden');
-});
+const cancelEnlarge = () => {
+    picElement.classList.add('hidden');
+    darkenDark.classList.add('hidden');
+}
+//call to cancel enlarge popup 
+cancelPicButton.addEventListener('click', cancelEnlarge);
+darkenDark.addEventListener('click', cancelEnlarge);
+
+
 
 /**
  * validating the "edit profile"
@@ -183,11 +205,7 @@ const checkInputValidity = (formElement, inputElement) => {
     }
 }
 
-/*test
-nameInput.addEventListener("input",function(){
-    checkInputValidity(formElement,nameInput);
-})
-*/
+
 
 
 //check if the whole form is valid
@@ -236,7 +254,6 @@ const setEventListeners = (formElement, formName) => {
 
 const formEdit = container.querySelector('.edit__form');
 const addEdit = container.querySelector('.add__form');
-//setEventListeners(formEdit,'edit');
 
 const enableValidation = () => {
     //prevent default
