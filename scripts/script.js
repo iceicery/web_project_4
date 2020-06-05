@@ -165,11 +165,8 @@ const showInputError= (formElement, inputElement, errorMessage) =>{
     inputElement.classList.add("form__input_type_error");
     errorElement.textContent = errorMessage;
     errorElement.classList.add("form__input-error_active");
-    console.log(errorElement);
-    console.log(inputElement);
 }
 
-//showInputError(formElement, nameInput, nameInput.validationMessage);
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove("form__input_type_error");
@@ -180,19 +177,19 @@ const hideInputError = (formElement, inputElement) => {
 const checkInputValidity=(formElement, inputElement) =>{
     if (!inputElement.validity.valid){
         showInputError(formElement, inputElement, inputElement.validationMessage);
-        console.log("Error");
     }
     else{
         hideInputError(formElement, inputElement);
-        console.log("Good to go");
     }
 }
+
 /*test
 nameInput.addEventListener("input",function(){
     checkInputValidity(formElement,nameInput);
 })
 */
-console.log(nameInput.value);
+
+
 //check if the whole form is valid
 const hasInvalidInput = (inputList) =>{
     return inputList.some((inputElement)=>{
@@ -200,3 +197,33 @@ const hasInvalidInput = (inputList) =>{
     });
 }
 
+//Activate the button and change the form background if the whole form is valid
+const toggleButtonState = (inputList, buttonElement)=>{
+    if (hasInvalidInput(inputList)){
+        buttonElement.classList.add("button__inactive");
+    }
+    else{
+        buttonElement.classList.remove("button__inactive");
+    }
+
+}
+
+//trigger the input event for edit form
+const setEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(".edit__input"));
+    const buttonElement = formElement.querySelector(".edit__button");
+    //set save button inactive before inputing
+    toggleButtonState(inputList,buttonElement);
+   //trigger the input event for each input
+   inputList.forEach((inputElement)=>{
+       inputElement.addEventListener("input",function(){
+           checkInputValidity(formElement, inputElement);
+           toggleButtonState(inputList,buttonElement);
+       });
+   });
+}
+
+/*
+const formEdit = container.querySelector('.edit__form');
+setEventListeners(formEdit);
+*/

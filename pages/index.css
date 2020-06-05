@@ -22,3 +22,9 @@
     line-height: 15px;
     color: #FF0000;
 }
+
+.button__inactive{
+    background-color: #fff;
+    color: rgba(0,0,0,.2);
+    border-color: rgba(0,0,0,.2);
+}
