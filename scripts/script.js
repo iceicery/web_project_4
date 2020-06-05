@@ -105,7 +105,7 @@ function createCard(name, link) {
     const selectImg = imgElement.querySelector('.elements__img');
     const imgRemove = imgElement.querySelector('.elements__trash');
     const imgLike = imgElement.querySelector('.elements__heart');
-    
+
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
     //like items
@@ -160,7 +160,7 @@ cancelPicButton.addEventListener('click', function () {
  * validating the "edit profile"
  */
 
-const showInputError= (formElement, inputElement, errorMessage) =>{
+const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add("form__input_type_error");
     errorElement.textContent = errorMessage;
@@ -172,13 +172,13 @@ const hideInputError = (formElement, inputElement) => {
     inputElement.classList.remove("form__input_type_error");
     errorElement.classList.remove("form__input-error_active");
     errorElement.textContent = "";
-}  
+}
 
-const checkInputValidity=(formElement, inputElement) =>{
-    if (!inputElement.validity.valid){
+const checkInputValidity = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage);
     }
-    else{
+    else {
         hideInputError(formElement, inputElement);
     }
 }
@@ -191,46 +191,46 @@ nameInput.addEventListener("input",function(){
 
 
 //check if the whole form is valid
-const hasInvalidInput = (inputList) =>{
-    return inputList.some((inputElement)=>{
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
     });
 }
 
 //inactive button
-const inactiveButton = (buttonElement) =>{
+const inactiveButton = (buttonElement) => {
     buttonElement.disabled = true;
     buttonElement.classList.add("button__inactive");
 }
 //active button
-const activeButton =(buttonElement) =>{
+const activeButton = (buttonElement) => {
     buttonElement.disabled = false;
     buttonElement.classList.remove("button__inactive");
 }
 
 //Activate the button and change the form background if the whole form is valid
-const toggleButtonState = (inputList, buttonElement)=>{
-    if (hasInvalidInput(inputList)){
+const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
         inactiveButton(buttonElement);
     }
-    else{
+    else {
         activeButton(buttonElement);
     }
 }
 
 //trigger the input event for edit form. formName are for two seperate forms 'edit' and 'add'
-const setEventListeners = (formElement,formName) => {
+const setEventListeners = (formElement, formName) => {
     const inputList = Array.from(formElement.querySelectorAll(`.${formName}__input`));
     const buttonElement = formElement.querySelector(`.${formName}__button`);
     //set save button inactive before inputing
-    toggleButtonState(inputList,buttonElement);
-   //trigger the input event for each input
-   inputList.forEach((inputElement)=>{
-       inputElement.addEventListener("input",function(){
-           checkInputValidity(formElement, inputElement);
-           toggleButtonState(inputList,buttonElement);
-       });
-   });
+    toggleButtonState(inputList, buttonElement);
+    //trigger the input event for each input
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener("input", function () {
+            checkInputValidity(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement);
+        });
+    });
 }
 
 
@@ -240,15 +240,15 @@ const addEdit = container.querySelector('.add__form');
 
 const enableValidation = () => {
     //prevent default
-    formElement.addEventListener("summit",function(evt){
+    formElement.addEventListener("summit", function (evt) {
         evt.preventDefault();
     });
-    addElements.addEventListener("submit",function(evt){
+    addElements.addEventListener("submit", function (evt) {
         evt.preventDefault();
     });
     //call setEventListeners for edit and add form
-    setEventListeners(formEdit,'edit');
-    setEventListeners(addEdit,'add');
+    setEventListeners(formEdit, 'edit');
+    setEventListeners(addEdit, 'add');
 }
 
 enableValidation();

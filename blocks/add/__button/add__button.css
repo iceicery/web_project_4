@@ -1,6 +1,5 @@
 .add__button {
   outline: none;
-  margin-top: 48px;
   right: 0;
   background-color: #000;
   color: #fff;
@@ -10,6 +9,9 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
+  position: absolute;
+  right: 0;
+  bottom: 61.6px;
 }
 
 .add__button:hover {
