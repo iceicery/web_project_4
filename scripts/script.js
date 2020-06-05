@@ -197,21 +197,31 @@ const hasInvalidInput = (inputList) =>{
     });
 }
 
+//inactive button
+const inactiveButton = (buttonElement) =>{
+    buttonElement.disabled = true;
+    buttonElement.classList.add("button__inactive");
+}
+//active button
+const activeButton =(buttonElement) =>{
+    buttonElement.disabled = false;
+    buttonElement.classList.remove("button__inactive");
+}
+
 //Activate the button and change the form background if the whole form is valid
 const toggleButtonState = (inputList, buttonElement)=>{
     if (hasInvalidInput(inputList)){
-        buttonElement.classList.add("button__inactive");
+        inactiveButton(buttonElement);
     }
     else{
-        buttonElement.classList.remove("button__inactive");
+        activeButton(buttonElement);
     }
-
 }
 
-//trigger the input event for edit form
-const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll(".edit__input"));
-    const buttonElement = formElement.querySelector(".edit__button");
+//trigger the input event for edit form. formName are for two seperate forms 'edit' and 'add'
+const setEventListeners = (formElement,formName) => {
+    const inputList = Array.from(formElement.querySelectorAll(`.${formName}__input`));
+    const buttonElement = formElement.querySelector(`.${formName}__button`);
     //set save button inactive before inputing
     toggleButtonState(inputList,buttonElement);
    //trigger the input event for each input
@@ -223,7 +233,22 @@ const setEventListeners = (formElement) => {
    });
 }
 
-/*
+
 const formEdit = container.querySelector('.edit__form');
-setEventListeners(formEdit);
-*/
+const addEdit = container.querySelector('.add__form');
+//setEventListeners(formEdit,'edit');
+
+const enableValidation = () => {
+    //prevent default
+    formElement.addEventListener("summit",function(evt){
+        evt.preventDefault();
+    });
+    addElements.addEventListener("submit",function(evt){
+        evt.preventDefault();
+    });
+    //call setEventListeners for edit and add form
+    setEventListeners(formEdit,'edit');
+    setEventListeners(addEdit,'add');
+}
+
+enableValidation();

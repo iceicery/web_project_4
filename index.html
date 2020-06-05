@@ -43,10 +43,12 @@
         </section>
         <section class="add hidden">
             <button class="add__button-icon"></button>
-            <form class="add__form">
+            <form class="add__form" novalidate>
                 <h2 class="add__title">New Place</h2>
-                <input type="text" id="title" class="add__input add__input-title" placeholder="Title" value="">
-                <input type="text" id="link" class="add__input add__input-img" placeholder="Image link" value="">
+                <input type="text" id="title" class="add__input add__input-title" placeholder="Title" value="" required minlength="1" maxlength="30">
+                <span class="add__title-error" id="title-error"></span>
+                <input type="url" id="link" class="add__input add__input-img" placeholder="Image link" value="" required>
+                <span class="add__link-error" id="link-error"></span>
                 <button class="add__button">Create</button>
             </form>
         </section>
