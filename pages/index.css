@@ -11,20 +11,6 @@
 @import url('../blocks/darken/darken.css');
 @import url('../blocks/darken-dark/darken-dark.css');
 @import url('../blocks/hidden/hidden.css');
-.form__input_type_error {
-  margin-bottom: 0;
-  border-bottom: 1px solid #FF0000;
-}
-
-.form__input-error_active {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: #FF0000;
-}
-
-.button__inactive {
-  background-color: #fff;
-  color: rgba(0, 0, 0, .2);
-  border-color: rgba(0, 0, 0, .2);
-}
+@import url('../blocks/button-inactive/button-inactive.css');
+@import url('../blocks/formInput-errorMessage/formInput-errorMessage.css');
+@import url('../blocks/formInput-error/formInput-error.css');
