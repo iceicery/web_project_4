@@ -127,16 +127,16 @@ function createCard(name, link) {
     imgElement.querySelector(".elements__title").textContent = name;
     selectImg.src = link;
     //like items
-    imgLike.addEventListener('click', function (evt) {
+    imgLike.addEventListener('click', (evt) => {
         evt.target.classList.toggle('elements__heart_active');
     });
 
     //remove items
-    imgRemove.addEventListener('click', function () {
+    imgRemove.addEventListener('click', () => {
         imgItem.remove();
     });
     //select image and call enlarge popup
-    selectImg.addEventListener('click', function () {
+    selectImg.addEventListener('click', () => {
         //get the right elements to enlarge
         bigPicTitle.textContent = name;
         bigPicImg.src = link;
