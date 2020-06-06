@@ -1,15 +1,15 @@
 .edit__button-icon {
-    outline: none;
-    background-color: transparent;
-    border: 0;
-    background-image: url('../../../images/Icon.svg');
-    background-position: center;
-    object-fit: contain;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: -40px;
-    right: -40px;
+  outline: none;
+  border: none;
+  background-image: url('../../../images/Icon.svg');
+  background-color: #000;
+  background-position: center;
+  object-fit: contain;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -40px;
+  right: -40px;
 }
 
 .edit__button-icon:hover {

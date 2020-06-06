@@ -2,6 +2,7 @@
   outline: none;
   border: none;
   background-image: url('../../../images/Icon.svg');
+  background-color: #000;
   background-position: center;
   object-fit: contain;
   position: absolute;
