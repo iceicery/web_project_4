@@ -1,6 +1,5 @@
 .edit__button {
   outline: none;
-  right: 0;
   background-color: #000;
   color: #fff;
   width: 100%;
@@ -26,6 +25,6 @@
     height: 40px;
     font-size: 14px;
     line-height: 17px;
-    bottom:50px;
+    bottom: 50px;
   }
 }
