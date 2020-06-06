@@ -71,7 +71,6 @@ const cancelForm = () => {
 const EscForm = (evt) => {
     if (evt.key === 'Escape') {
         cancelForm();
-        console.log("work");
     }
 }
 
