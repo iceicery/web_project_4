@@ -67,12 +67,14 @@ const cancelForm = () => {
     addElements.classList.add('hidden');
     formElement.classList.add('hidden');
     darken.classList.add('hidden');
-}
+};
+
 const EscForm = (evt) => {
     if (evt.key === 'Escape') {
         cancelForm();
+        cancelEnlarge();
     }
-}
+};
 
 darken.addEventListener('click', cancelForm);
 document.addEventListener('keydown', EscForm);
@@ -170,7 +172,8 @@ addElements.addEventListener('submit', inputToCards);
 const cancelEnlarge = () => {
     picElement.classList.add('hidden');
     darkenDark.classList.add('hidden');
-}
+};
+
 //call to cancel enlarge popup 
 cancelPicButton.addEventListener('click', cancelEnlarge);
 darkenDark.addEventListener('click', cancelEnlarge);
