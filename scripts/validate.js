@@ -18,7 +18,7 @@ const hideInputError = (formSelector, inputElement, inputErrorClass, errorClass)
     errorElement.textContent = "";
 };
 
-const checkInputValidity = (formSelector, inputElement , inputErrorClass, errorClass) => {
+const checkInputValidity = (formSelector, inputElement, inputErrorClass, errorClass) => {
     if (!inputElement.validity.valid) {
         showInputError(formSelector, inputElement, inputErrorClass, errorClass, inputElement.validationMessage);
     }
@@ -71,7 +71,7 @@ const setEventListeners = (formSelector, inactiveButtonClass, inputErrorClass, e
     //trigger the input event for each input
     inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
-            checkInputValidity(formSelector, inputElement , inputErrorClass, errorClass);
+            checkInputValidity(formSelector, inputElement, inputErrorClass, errorClass);
             toggleButtonState(inputList, buttonElement, inactiveButtonClass);
         });
     });
