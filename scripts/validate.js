@@ -1,29 +1,24 @@
-// I was told to declare container here. But it shows error in console since I already declare it in script.js
-//const container = document.querySelector('.container');
-//const formEdit = container.querySelector('.edit__form');
-//const addEdit = container.querySelector('.add__form');
-
-const showInputError = (formSelector, inputElement, inputErrorClass, errorClass, errorMessage) => {
+const showInputError = (formSelector, inputElement, errorMessage) => {
     const errorElement = formSelector.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add(`${inputErrorClass}`);
+    inputElement.classList.add("formInput-error");
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(`${errorClass}`);
+    errorElement.classList.add("formInput-errorMessage");
 };
 
 
-const hideInputError = (formSelector, inputElement, inputErrorClass, errorClass) => {
+const hideInputError = (formSelector, inputElement) => {
     const errorElement = formSelector.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(`${inputErrorClass}`);
-    errorElement.classList.remove(`${errorClass}`);
+    inputElement.classList.remove("formInput-error");
+    errorElement.classList.remove("formInput-errorMessage");
     errorElement.textContent = "";
 };
 
-const checkInputValidity = (formSelector, inputElement, inputErrorClass, errorClass) => {
+const checkInputValidity = (formSelector, inputElement) => {
     if (!inputElement.validity.valid) {
-        showInputError(formSelector, inputElement, inputErrorClass, errorClass, inputElement.validationMessage);
+        showInputError(formSelector, inputElement, inputElement.validationMessage);
     }
     else {
-        hideInputError(formSelector, inputElement, inputErrorClass, errorClass);
+        hideInputError(formSelector, inputElement);
     }
 };
 
@@ -38,23 +33,23 @@ const hasInvalidInput = (inputList) => {
 };
 
 //inactive button
-const inactiveButton = (buttonElement, inactiveButtonClass) => {
+const inactiveButton = (buttonElement) => {
     buttonElement.disabled = true;
-    buttonElement.classList.add(`${inactiveButtonClass}`);
+    buttonElement.classList.add("button-inactive");
 };
 //active button
-const activeButton = (buttonElement, inactiveButtonClass) => {
+const activeButton = (buttonElement) => {
     buttonElement.disabled = false;
-    buttonElement.classList.remove(`${inactiveButtonClass}`);
+    buttonElement.classList.remove("button-inactive");
 };
 
 //Activate the button and change the form background if the whole form is valid
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
+const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
-        inactiveButton(buttonElement, inactiveButtonClass);
+        inactiveButton(buttonElement);
     }
     else {
-        activeButton(buttonElement, inactiveButtonClass);
+        activeButton(buttonElement);
     }
 };
 
@@ -62,7 +57,7 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 
 
 //trigger the input event for edit form. formName are for two seperate forms 'edit' and 'add'
-const setEventListeners = (formSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
+const setEventListeners = (formSelector) => {
     const formName = formSelector.className.split(" ")[0];
     const inputList = Array.from(formSelector.querySelectorAll(`.${formName}__input`));
     const buttonElement = formSelector.querySelector(`.${formName}__button`);
@@ -71,8 +66,8 @@ const setEventListeners = (formSelector, inactiveButtonClass, inputErrorClass, e
     //trigger the input event for each input
     inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
-            checkInputValidity(formSelector, inputElement, inputErrorClass, errorClass);
-            toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+            checkInputValidity(formSelector, inputElement);
+            toggleButtonState(inputList, buttonElement);
         });
     });
 };
@@ -80,15 +75,15 @@ const setEventListeners = (formSelector, inactiveButtonClass, inputErrorClass, e
 
 
 
-const enableValidation = (formSelector,/* inputSelector, submitButtonSelector,*/ inactiveButtonClass, inputErrorClass, errorClass) => {
+const enableValidation = (formSelector) => {
     //prevent default
     formSelector.addEventListener("summit", (evt) => {
         evt.preventDefault();
     });
     //call setEventListeners for edit and add form
-    setEventListeners(formSelector, inactiveButtonClass, inputErrorClass, errorClass);
+    setEventListeners(formSelector);
 };
 
-enableValidation(formElement, "button-inactive", "formInput-error", "formInput-errorMessage");
-enableValidation(addElements, "button-inactive", "formInput-error", "formInput-errorMessage");
+enableValidation(formElement);
+enableValidation(addElements);
 
