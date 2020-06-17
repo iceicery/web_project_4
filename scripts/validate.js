@@ -77,7 +77,7 @@ const setEventListeners = (formSelector) => {
 
 const enableValidation = (formSelector) => {
     //prevent default
-    formSelector.addEventListener("summit", (evt) => {
+    formSelector.addEventListener("submit", (evt) => {
         evt.preventDefault();
     });
     //call setEventListeners for edit and add form
