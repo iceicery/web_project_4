@@ -1,3 +1,7 @@
+//import JS modules
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidatior.js";
+
 //call and dismiss the form//
 const container = document.querySelector('.container');
 const editButton = container.querySelector('.profile__button-sqr');
@@ -28,7 +32,6 @@ const picElement = container.querySelector(".bigPic");
 const darkenDark = document.querySelector('.darken-dark');
 const bigPicImg = container.querySelector('.bigPic__img');
 const bigPicTitle = container.querySelector('.bigPic__title');
-
 
 
 //submit create image form
@@ -117,66 +120,9 @@ const initialCards = [
     }
 ];
 
-//create class Card
-
-class Card {
-    constructor(data, cardSelector) {
-        this._cardSelector = cardSelector;
-        this._text = data.name;
-        this._link = data.link;
-    }
-    //clone template for image elements
-    _getTemplate() {
-        const imgElement = document
-            .querySelector(this._cardSelector)
-            .content
-            .querySelector(".elements__item")
-            .cloneNode(true);
-
-        return imgElement;
-
-    }
-
-    createCard() {
-        this._element = this._getTemplate();
-
-
-        this._element.querySelector(".elements__title").textContent = this._text;
-        this._element.querySelector(".elements__img").src = this._link;
-        this._setEventListeners();
-        return this._element;
-    }
-
-    _removeItem() {
-        this._element.remove();
-    }
-
-    _enlargePic() {
-        bigPicTitle.textContent = this._text;
-        bigPicImg.src = this._link;
-        picElement.classList.toggle('hidden');
-        darkenDark.classList.toggle('hidden');
-    }
-    _setEventListeners() {
-        //like items
-        this._element.querySelector('.elements__heart').addEventListener('click', (evt) => {
-            evt.target.classList.toggle('elements__heart_active');
-        });
-        //remove items
-        this._element.querySelector('.elements__trash').addEventListener('click', () => {
-            this._removeItem();
-        });
-        //enlarge items
-        this._element.querySelector('.elements__img').addEventListener('click', () => {
-            this._enlargePic();
-        })
-    }
-}
-
-
-//add element to elements container
+//add element to elements container by creating new card class
 const addImg = (data) => {
-    const card = new Card(data, '.img-template');
+    const card = new Card(data, '#img-template');
     const imgElement = card.createCard();
     imgContainer.prepend(imgElement);
 }
@@ -186,7 +132,6 @@ initialCards.forEach((element) => {
 });
 
 //add a new input to initialCards when submit the form
-
 const inputToCards = (evt) => {
     evt.preventDefault();
     const newData = {
@@ -202,6 +147,32 @@ addElements.addEventListener('submit', inputToCards);
 //call to cancel enlarge popup 
 cancelPicButton.addEventListener('click', cancelEnlarge);
 darkenDark.addEventListener('click', cancelEnlarge);
+
+//object list for edit form
+const objectEdit = {
+    errorClass: "formElement-error",
+    errorMessageClass: "formInput-errorMessage",
+    buttonClass: "button-inactive",
+    inputList: Array.from(formElement.querySelectorAll(`.edit__input`)),
+    buttonElement: formElement.querySelector('.edit__button')
+};
+//object list for add form
+const objectAdd = {
+    errorClass: "formInput-error",
+    errorMessageClass: "formInput-errorMessage",
+    buttonClass: "button-inactive",
+    inputList: Array.from(addElements.querySelectorAll('.add__input')),
+    buttonElement: addElements.querySelector('.add__button')
+};
+
+//validate both forms by creating new FormValidator class
+const editValidClass = new FormValidator(objectEdit, formElement);
+const addValidClass = new FormValidator(objectAdd, addElements);
+
+editValidClass.enableValidatoin();
+addValidClass.enableValidatoin();
+
+
 
 
 
