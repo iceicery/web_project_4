@@ -20,8 +20,7 @@ const cancelAddButton = container.querySelector('.add__button-icon');
 //input value of creating a new image
 const imgTitleValue = container.querySelector(".add__input-title");
 const imgLinkValue = container.querySelector(".add__input-img");
-//template
-const imgTemplate = document.querySelector("#img-template").content;
+//container for image items
 const imgContainer = document.querySelector('.elements__container');
 //big picture fields in DOM
 const cancelPicButton = container.querySelector(".bigPic__button-icon");
@@ -29,6 +28,7 @@ const picElement = container.querySelector(".bigPic");
 const darkenDark = document.querySelector('.darken-dark');
 const bigPicImg = container.querySelector('.bigPic__img');
 const bigPicTitle = container.querySelector('.bigPic__title');
+
 
 
 //submit create image form
@@ -117,63 +117,86 @@ const initialCards = [
     }
 ];
 
-/***
-Add the initial array elements to html
-***/
+//create class Card
 
-//createCard: creat card for imgage elements
-function createCard(name, link) {
+class Card {
+    constructor(data, cardSelector) {
+        this._cardSelector = cardSelector;
+        this._text = data.name;
+        this._link = data.link;
+    }
     //clone template for image elements
-    const imgElement = imgTemplate.cloneNode(true);
-    const imgItem = imgElement.querySelector('.elements__item');
-    const selectImg = imgElement.querySelector('.elements__img');
-    const imgRemove = imgElement.querySelector('.elements__trash');
-    const imgLike = imgElement.querySelector('.elements__heart');
+    _getTemplate() {
+        const imgElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector(".elements__item")
+            .cloneNode(true);
 
-    imgElement.querySelector(".elements__title").textContent = name;
-    selectImg.src = link;
-    //like items
-    imgLike.addEventListener('click', (evt) => {
-        evt.target.classList.toggle('elements__heart_active');
-    });
+        return imgElement;
 
-    //remove items
-    imgRemove.addEventListener('click', () => {
-        imgItem.remove();
-    });
-    //select image and call enlarge popup
-    selectImg.addEventListener('click', () => {
-        //get the right elements to enlarge
-        bigPicTitle.textContent = name;
-        bigPicImg.src = link;
+    }
+
+    createCard() {
+        this._element = this._getTemplate();
+
+
+        this._element.querySelector(".elements__title").textContent = this._text;
+        this._element.querySelector(".elements__img").src = this._link;
+        this._setEventListeners();
+        return this._element;
+    }
+
+    _removeItem() {
+        this._element.remove();
+    }
+
+    _enlargePic() {
+        bigPicTitle.textContent = this._text;
+        bigPicImg.src = this._link;
         picElement.classList.toggle('hidden');
         darkenDark.classList.toggle('hidden');
-    });
-    return imgElement;
+    }
+    _setEventListeners() {
+        //like items
+        this._element.querySelector('.elements__heart').addEventListener('click', (evt) => {
+            evt.target.classList.toggle('elements__heart_active');
+        });
+        //remove items
+        this._element.querySelector('.elements__trash').addEventListener('click', () => {
+            this._removeItem();
+        });
+        //enlarge items
+        this._element.querySelector('.elements__img').addEventListener('click', () => {
+            this._enlargePic();
+        })
+    }
 }
-createCard();
 
-//addImg: add image elements to created card
-function addImg(name, link) {
-    imgContainer.prepend(createCard(name, link));
+
+//add element to elements container
+const addImg = (data) => {
+    const card = new Card(data, '.img-template');
+    const imgElement = card.createCard();
+    imgContainer.prepend(imgElement);
 }
+//add element for each array element
+initialCards.forEach((element) => {
+    addImg(element);
+});
 
+//add a new input to initialCards when submit the form
 
-//call addImg function to add initial elements one by one in the end
-initialCards.forEach((card) => addImg(card.name, card.link));
-
-
-/***
-Add a new input to initalCards when submit the form
-***/
-
-function inputToCards(evt) {
+const inputToCards = (evt) => {
     evt.preventDefault();
-    addImg(imgTitleValue.value, imgLinkValue.value);
+    const newData = {
+        name: imgTitleValue.value,
+        link: imgLinkValue.value
+    };
+    addImg(newData);
 }
 //submit add image form
 addElements.addEventListener('submit', inputToCards);
-
 
 
 //call to cancel enlarge popup 
