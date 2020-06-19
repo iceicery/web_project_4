@@ -2,15 +2,15 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidatior.js";
 
-//call and dismiss the form//
+//DOM//
 const container = document.querySelector('.container');
 const editButton = container.querySelector('.profile__button-sqr');
-// Let's find the form in the DOM
+// form in the DOM
 const formElement = container.querySelector('.edit');
 const cancelButton = container.querySelector('.edit__button-icon');
 const saveButton = container.querySelector('.edit__button');
 const darken = document.querySelector('.darken');
-// Let's find the form fields in the DOM
+//form fields in the DOM
 const nameInput = container.querySelector('.edit__input-name');
 const jobInput = container.querySelector('.edit__input-job');
 // Select elements where the field values will be entered
@@ -125,7 +125,7 @@ const addImg = (data) => {
     const card = new Card(data, '#img-template');
     const imgElement = card.createCard();
     imgContainer.prepend(imgElement);
-}
+};
 //add element for each array element
 initialCards.forEach((element) => {
     addImg(element);
@@ -139,7 +139,7 @@ const inputToCards = (evt) => {
         link: imgLinkValue.value
     };
     addImg(newData);
-}
+};
 //submit add image form
 addElements.addEventListener('submit', inputToCards);
 
