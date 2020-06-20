@@ -1,6 +1,7 @@
 //import JS modules
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidatior.js";
+import { togglePopup } from "./utils.js";
 
 //DOM//
 const container = document.querySelector('.container');
@@ -30,19 +31,18 @@ const imgContainer = document.querySelector('.elements__container');
 const cancelPicButton = container.querySelector(".bigPic__button-icon");
 const picElement = container.querySelector(".bigPic");
 const darkenDark = document.querySelector('.darken-dark');
-const bigPicImg = container.querySelector('.bigPic__img');
-const bigPicTitle = container.querySelector('.bigPic__title');
 
 
 //submit create image form
-function callEdit() {
-    formElement.classList.toggle('hidden');
-    darken.classList.toggle('hidden');
-}
-
-editButton.addEventListener("click", callEdit);
-cancelButton.addEventListener("click", callEdit);
-saveButton.addEventListener('click', callEdit);
+editButton.addEventListener("click", () => {
+    togglePopup(formElement, darken);
+});
+cancelButton.addEventListener("click", () => {
+    togglePopup(formElement, darken);
+});
+saveButton.addEventListener('click', () => {
+    togglePopup(formElement, darken);
+});
 
 
 //form submit handler
@@ -56,14 +56,15 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 //call edit places form
-function callAdd() {
-    addElements.classList.toggle('hidden');
-    darken.classList.toggle('hidden');
-}
-
-addButton.addEventListener('click', callAdd);
-createButton.addEventListener('click', callAdd);
-cancelAddButton.addEventListener('click', callAdd);
+addButton.addEventListener('click', () => {
+    togglePopup(addElements, darken);
+});
+createButton.addEventListener('click', () => {
+    togglePopup(addElements, darken);
+});
+cancelAddButton.addEventListener('click', () => {
+    togglePopup(addElements, darken);
+});
 
 //cancel form 
 const cancelForm = () => {

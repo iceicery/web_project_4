@@ -1,3 +1,5 @@
+import { togglePopup } from "./utils.js";
+
 class Card {
     constructor(data, cardSelector) {
         this._cardSelector = cardSelector;
@@ -37,8 +39,7 @@ class Card {
         const bigPicTitle = document.querySelector('.bigPic__title');
         bigPicTitle.textContent = this._text;
         bigPicImg.src = this._link;
-        picElement.classList.toggle('hidden');
-        darkenDark.classList.toggle('hidden');
+        togglePopup(picElement, darkenDark);
     }
     _setEventListeners() {
         //like items
