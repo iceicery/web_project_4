@@ -121,6 +121,84 @@ const initialCards = [
     }
 ];
 
+class Section{
+    constructor({items,renderer},classSelector){
+        this._items=items;
+        this._renderer=renderer;
+        this._container=document.querySelector(classSelector);
+    }
+
+    renderer(){
+        this._items.forEach(item => {
+            this._renderer(item);
+        })
+    }
+
+    addItem(element){
+        this._container.prepened(element);
+    }
+}
+
+class Popup{
+    constructor(popupSelector){
+        this._popupItem=document.querySelector(popupSelector);
+    }
+    open(darkSelector){
+        this._popupItem.classList.remove('hidden');
+        darkSelector.classList.remove('hidden');
+    }
+    close(darkSelector){
+        this._popupItem.classList.add('hidden');
+        darkSelector.classList.add('hidden');
+    }
+    _handeEscClose(evt){
+        if (evt.key="Escape"){
+            this.close();
+        }
+    }
+    setEventListeners(){
+        this._popupItem.querySelector(`.${popSelector.substring(1)}__button-icon`).addEventListener('clisck',()=>{
+            this.close();
+        })
+        darken.addEventListener('click',()=>{
+            this.close();
+        })
+    }
+}
+
+class PopupWithImage extends Popup{ 
+    constructor({data},popupSelector){
+        super(popupSelector);
+        this._title = data.title;
+        this._image = data.image;
+
+    }
+    open(darkSelector){
+        super._open(darkSelector);
+        const bigPicImg = document.querySelector('.bigPic__img');
+        const bigPicTitle = document.querySelector('.bigPic__title');
+        bigPicTitle.textContent = this._text;
+        bigPicImg.src = this._link;
+    }
+}
+
+class PopupWithForm extends Popup{
+    constructor(callback,popupSelector){
+        super(popupSelector);
+        this._callback = callback;
+    }
+    _getInputValues(){
+        //collect data from all input fields
+    }
+    setEventListeners(){
+        //click and close
+        //submit
+    }
+    close(){
+        //reset the from
+    }
+}
+
 //add element to elements container by creating new card class
 const addImg = (data) => {
     const card = new Card(data, '#img-template');
