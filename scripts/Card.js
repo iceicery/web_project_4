@@ -1,5 +1,3 @@
-import { togglePopup } from "./utils.js";
-
 class Card {
     constructor({data, handleCardClick},cardSelector) {
         this._cardSelector = cardSelector;
@@ -32,16 +30,6 @@ class Card {
     _removeItem() {
         this._element.remove();
     }
-/*
-    _enlargePic() {
-        const picElement = document.querySelector(".bigPic");
-        const darkenDark = document.querySelector('.darken-dark');
-        const bigPicImg = document.querySelector('.bigPic__img');
-        const bigPicTitle = document.querySelector('.bigPic__title');
-        bigPicTitle.textContent = this._name;
-        bigPicImg.src = this._link;
-        togglePopup(picElement, darkenDark);
-    }*/
     _setEventListeners() {
         //like items
         this._element.querySelector('.elements__heart').addEventListener('click', (evt) => {

@@ -123,9 +123,9 @@ const initialCards = [
 
 class Section{
     constructor({items,renderer},classSelector){
-        this._items=items;
-        this._renderer=renderer;
-        this._container=document.querySelector(classSelector);
+        this._items=items; //array of data
+        this._renderer=renderer;//function for creating and rendering data
+        this._container=document.querySelector(classSelector);//where to add elements
     }
 
     renderer(){
@@ -138,6 +138,7 @@ class Section{
         this._container.prepened(element);
     }
 }
+
 
 class Popup{
     constructor(popupSelector){
