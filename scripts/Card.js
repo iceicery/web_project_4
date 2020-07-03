@@ -1,10 +1,11 @@
 import { togglePopup } from "./utils.js";
 
 class Card {
-    constructor(data, cardSelector) {
+    constructor({data, handleCardClick},cardSelector) {
         this._cardSelector = cardSelector;
-        this._text = data.name;
+        this._name = data.name;
         this._link = data.link;
+        this._handleCardClick=handleCardClick;
     }
     //clone template for image elements
     _getTemplate() {
@@ -22,7 +23,7 @@ class Card {
         this._element = this._getTemplate();
 
 
-        this._element.querySelector(".elements__title").textContent = this._text;
+        this._element.querySelector(".elements__title").textContent = this._name;
         this._element.querySelector(".elements__img").src = this._link;
         this._setEventListeners();
         return this._element;
@@ -31,16 +32,16 @@ class Card {
     _removeItem() {
         this._element.remove();
     }
-
+/*
     _enlargePic() {
         const picElement = document.querySelector(".bigPic");
         const darkenDark = document.querySelector('.darken-dark');
         const bigPicImg = document.querySelector('.bigPic__img');
         const bigPicTitle = document.querySelector('.bigPic__title');
-        bigPicTitle.textContent = this._text;
+        bigPicTitle.textContent = this._name;
         bigPicImg.src = this._link;
         togglePopup(picElement, darkenDark);
-    }
+    }*/
     _setEventListeners() {
         //like items
         this._element.querySelector('.elements__heart').addEventListener('click', (evt) => {
@@ -52,7 +53,7 @@ class Card {
         });
         //enlarge items
         this._element.querySelector('.elements__img').addEventListener('click', () => {
-            this._enlargePic();
+            this._handleCardClick();
         })
     }
 }

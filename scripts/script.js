@@ -151,7 +151,7 @@ class Popup{
         this._popupItem.classList.add('hidden');
         darkSelector.classList.add('hidden');
     }
-    _handeEscClose(evt){
+    _handleEscClose(evt){
         if (evt.key="Escape"){
             this.close();
         }
@@ -163,45 +163,83 @@ class Popup{
         darken.addEventListener('click',()=>{
             this.close();
         })
+        document.addEventListener('keydown',(evt)=>{
+            this._handleEscClose(evt);
+        });
     }
 }
 
 class PopupWithImage extends Popup{ 
-    constructor({data},popupSelector){
+    constructor(data,popupSelector){
         super(popupSelector);
-        this._title = data.title;
-        this._image = data.image;
+        this._name = data.name;
+        this._link = data.link;
 
     }
     open(darkSelector){
-        super._open(darkSelector);
+        super.open(darkSelector);
         const bigPicImg = document.querySelector('.bigPic__img');
         const bigPicTitle = document.querySelector('.bigPic__title');
-        bigPicTitle.textContent = this._text;
+        bigPicTitle.textContent = this._name;
         bigPicImg.src = this._link;
     }
 }
 
+
+
 class PopupWithForm extends Popup{
     constructor(callback,popupSelector){
         super(popupSelector);
+        this._arrayList=Array.from(super._popupItem.querySelectorAll(`${popupSelector}__input`)),
         this._callback = callback;
     }
-    _getInputValues(){
+    _getInputValues(inputOne,inputTwo){
+        const newData = {
+            inputOne: this._arrayList[0].value,
+            inputTwo: this._arrayList[1].value
+        };
+        return newData;
         //collect data from all input fields
     }
     setEventListeners(){
         //click and close
+        super.setEventListeners();
         //submit
+        super._popupItem.addEventListener('submit',this._callback);
     }
     close(){
+        super.close();
         //reset the from
+        this._arrayList[0].textContent="";
+        this._arrayList[1].textContent="";
     }
 }
 
+class UserInfo{
+    constructor({userName,userJob}){
+        this._name=userName;
+        this._job=userJob;
+    }
+    getUserInfo(){
+        const userData = {
+           userName: this._name,
+           userJob: this._job
+        }
+        return userData;
+    }
+    setUserInfo(){
+       titleToChange.textContent = this._name;
+       subtitleToChange.textContent = this._job;
+    }
+}
+//
+
 //add element to elements container by creating new card class
 const addImg = (data) => {
-    const card = new Card(data, '#img-template');
+    const card = new Card({data, handleCardClick: ()=>{
+        const popupImg = new PopupWithImage(data, '.bigPic');
+        popupImg.open(darkenDark);
+    }}, '#img-template');
     const imgElement = card.createCard();
     imgContainer.prepend(imgElement);
 };
@@ -252,6 +290,6 @@ editValidClass.enableValidatoin();
 addValidClass.enableValidatoin();
 
 
-
+console.log(objectEdit.inputList[0].value);
 
 
