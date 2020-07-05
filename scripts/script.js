@@ -1,93 +1,9 @@
 //import JS modules
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidatior.js";
-import { togglePopup } from "./utils.js";
+import { container, editButton, formElement, darken, nameInput, jobInput, titleToChange,
+         subtitleToChange, addButton, addElements, imgTitleValue, imgLinkValue, darkenDark } from "./utils.js"; 
 
-//DOM//
-const container = document.querySelector('.container');
-const editButton = container.querySelector('.profile__button-sqr');
-// form in the DOM
-const formElement = container.querySelector('.edit');
-const cancelButton = container.querySelector('.edit__button-icon');
-const saveButton = container.querySelector('.edit__button');
-const darken = document.querySelector('.darken');
-//form fields in the DOM
-const nameInput = container.querySelector('.edit__input-name');
-const jobInput = container.querySelector('.edit__input-job');
-// Select elements where the field values will be entered
-const titleToChange = container.querySelector('.profile__title');
-const subtitleToChange = container.querySelector('.profile__subtitle');
-const addButton = container.querySelector('.profile__button-reg');
-// add image form in the DOM
-const addElements = container.querySelector('.add');
-const createButton = container.querySelector('.add__button');
-const cancelAddButton = container.querySelector('.add__button-icon');
-//input value of creating a new image
-const imgTitleValue = container.querySelector(".add__input-title");
-const imgLinkValue = container.querySelector(".add__input-img");
-//container for image items
-const imgContainer = document.querySelector('.elements__container');
-//big picture fields in DOM
-const cancelPicButton = container.querySelector(".bigPic__button-icon");
-const picElement = container.querySelector(".bigPic");
-const darkenDark = document.querySelector('.darken-dark');
-
-
-//submit create image form
-editButton.addEventListener("click", () => {
-    togglePopup(formElement, darken);
-});
-cancelButton.addEventListener("click", () => {
-    togglePopup(formElement, darken);
-});
-saveButton.addEventListener('click', () => {
-    togglePopup(formElement, darken);
-});
-
-
-//form submit handler
-function formSubmitHandler(evt) {
-    evt.preventDefault();
-    titleToChange.textContent = nameInput.value;
-    subtitleToChange.textContent = jobInput.value;
-}
-
-// Connect the handler to the form:
-formElement.addEventListener('submit', formSubmitHandler);
-
-//call edit places form
-addButton.addEventListener('click', () => {
-    togglePopup(addElements, darken);
-});
-createButton.addEventListener('click', () => {
-    togglePopup(addElements, darken);
-});
-cancelAddButton.addEventListener('click', () => {
-    togglePopup(addElements, darken);
-});
-
-//cancel form 
-const cancelForm = () => {
-    addElements.classList.add('hidden');
-    formElement.classList.add('hidden');
-    darken.classList.add('hidden');
-};
-
-//cancel enlarge popup
-const cancelEnlarge = () => {
-    picElement.classList.add('hidden');
-    darkenDark.classList.add('hidden');
-};
-
-const EscForm = (evt) => {
-    if (evt.key === 'Escape') {
-        cancelForm();
-        cancelEnlarge();
-    }
-};
-
-darken.addEventListener('click', cancelForm);
-document.addEventListener('keydown', EscForm);
 
 
 /**********************************
@@ -122,48 +38,50 @@ const initialCards = [
 ];
 
 class Section{
-    constructor({items,renderer},classSelector){
-        this._items=items; //array of data
+    constructor({data,renderer},classSelector){
+        this._items=data; //array of data
         this._renderer=renderer;//function for creating and rendering data
         this._container=document.querySelector(classSelector);//where to add elements
     }
 
     renderer(){
-        this._items.forEach(item => {
+        this._items.forEach((item) => {
             this._renderer(item);
         })
     }
 
     addItem(element){
-        this._container.prepened(element);
+        this._container.prepend(element);
     }
 }
 
 
 class Popup{
-    constructor(popupSelector){
+    constructor({popupSelector,darkSelector}){
+        this._popupSelector=popupSelector;
+        this._darkSelector=darkSelector
         this._popupItem=document.querySelector(popupSelector);
     }
-    open(darkSelector){
+    open(){
         this._popupItem.classList.remove('hidden');
-        darkSelector.classList.remove('hidden');
+        this._darkSelector.classList.remove('hidden');
     }
-    close(darkSelector){
+    close(){
         this._popupItem.classList.add('hidden');
-        darkSelector.classList.add('hidden');
+        this._darkSelector.classList.add('hidden');
     }
     _handleEscClose(evt){
-        if (evt.key="Escape"){
+        if (evt.key =="Escape"){
             this.close();
         }
     }
     setEventListeners(){
-        this._popupItem.querySelector(`.${popSelector.substring(1)}__button-icon`).addEventListener('clisck',()=>{
+        document.querySelector(`${this._popupSelector}__button-icon`).addEventListener('click',()=>{
             this.close();
-        })
-        darken.addEventListener('click',()=>{
+        });
+        this._darkSelector.addEventListener('click',()=>{
             this.close();
-        })
+        });
         document.addEventListener('keydown',(evt)=>{
             this._handleEscClose(evt);
         });
@@ -171,14 +89,14 @@ class Popup{
 }
 
 class PopupWithImage extends Popup{ 
-    constructor(data,popupSelector){
-        super(popupSelector);
+    constructor(data,{popupSelector,darkSelector}){
+        super({popupSelector,darkSelector});
         this._name = data.name;
         this._link = data.link;
 
     }
-    open(darkSelector){
-        super.open(darkSelector);
+    open(){
+        super.open();
         const bigPicImg = document.querySelector('.bigPic__img');
         const bigPicTitle = document.querySelector('.bigPic__title');
         bigPicTitle.textContent = this._name;
@@ -189,15 +107,15 @@ class PopupWithImage extends Popup{
 
 
 class PopupWithForm extends Popup{
-    constructor(callback,popupSelector){
-        super(popupSelector);
-        this._arrayList=Array.from(super._popupItem.querySelectorAll(`${popupSelector}__input`)),
+    constructor(callback,{popupSelector,darkSelector}){
+        super({popupSelector,darkSelector});
+        this._arrayList=Array.from(document.querySelectorAll(`${popupSelector}__input`)),
         this._callback = callback;
     }
-    _getInputValues(inputOne,inputTwo){
+    _getInputValues(){
         const newData = {
-            inputOne: this._arrayList[0].value,
-            inputTwo: this._arrayList[1].value
+            name: this._arrayList[0].value,
+            link: this._arrayList[1].value
         };
         return newData;
         //collect data from all input fields
@@ -206,18 +124,22 @@ class PopupWithForm extends Popup{
         //click and close
         super.setEventListeners();
         //submit
-        super._popupItem.addEventListener('submit',this._callback);
+        this._popupItem.addEventListener('submit',this._callback);
+        //close the save button
+        document.querySelector(`${this._popupSelector}__button`).addEventListener('click',()=>{
+            this.close();
+            this._callback;
+        })
     }
     close(){
         super.close();
         //reset the from
-        this._arrayList[0].textContent="";
-        this._arrayList[1].textContent="";
+        this._popupItem.reset;
     }
 }
 
 class UserInfo{
-    constructor({userName,userJob}){
+    constructor(userName,userJob){
         this._name=userName;
         this._job=userJob;
     }
@@ -233,38 +155,67 @@ class UserInfo{
        subtitleToChange.textContent = this._job;
     }
 }
-//
+//add element to elements container by creating new Section
 
-//add element to elements container by creating new card class
-const addImg = (data) => {
-    const card = new Card({data, handleCardClick: ()=>{
-        const popupImg = new PopupWithImage(data, '.bigPic');
-        popupImg.open(darkenDark);
+
+const addImgList = new Section({data:initialCards,renderer:(item)=>{
+    const card = new Card({data:item, handleCardClick: ()=>{
+        const popupImg = new PopupWithImage(item, {popupSelector:'.bigPic',darkSelector:darkenDark});
+        popupImg.open();
+        popupImg.setEventListeners();
     }}, '#img-template');
-    const imgElement = card.createCard();
-    imgContainer.prepend(imgElement);
-};
-//add element for each array element
-initialCards.forEach((element) => {
-    addImg(element);
+    const imgElement=card.createCard();
+    addImgList.addItem(imgElement);
+}},'.elements__container');
+
+addImgList.renderer();
+
+//get new userinfo when submitting the edit form
+const formSubmitHandler=(evt)=> {
+    evt.preventDefault();
+    const user = new UserInfo(nameInput.value,jobInput.value);
+    user.setUserInfo();
+}
+
+const editFormPopup = new PopupWithForm((evt)=>{
+    formSubmitHandler(evt);
+},{popupSelector:'.edit',darkSelector:darken});
+
+editFormPopup.setEventListeners();
+
+//open edit form
+editButton.addEventListener("click", () => {
+    editFormPopup.open();
 });
 
-//add a new input to initialCards when submit the form
-const inputToCards = (evt) => {
+//get new img when submiting the add form
+const addFormSubmitHandler = (evt)=>{
     evt.preventDefault();
-    const newData = {
-        name: imgTitleValue.value,
-        link: imgLinkValue.value
-    };
-    addImg(newData);
+    const newData = [{name: imgTitleValue.value, link:imgLinkValue.value}];    
+    const addImgList = new Section({data:newData,renderer:(item)=>{
+        const card = new Card({data:item, handleCardClick: ()=>{
+            const popupImg = new PopupWithImage(item, {popupSelector:'.bigPic',darkSelector:darkenDark});
+            popupImg.open();
+            popupImg.setEventListeners();
+        }}, '#img-template');
+        const imgElement=card.createCard();
+        addImgList.addItem(imgElement);
+    }},'.elements__container');
+    
+    addImgList.renderer();
 };
-//submit add image form
-addElements.addEventListener('submit', inputToCards);
+
+const addFormPopup = new PopupWithForm((evt) => {
+    addFormSubmitHandler(evt);
+},{popupSelector:'.add',darkSelector:darken});
+
+addFormPopup.setEventListeners();
+//call add form
+addButton.addEventListener('click', () => {
+    addFormPopup.open();
+});
 
 
-//call to cancel enlarge popup 
-cancelPicButton.addEventListener('click', cancelEnlarge);
-darkenDark.addEventListener('click', cancelEnlarge);
 
 //object list for edit form
 const objectEdit = {
@@ -291,6 +242,6 @@ editValidClass.enableValidatoin();
 addValidClass.enableValidatoin();
 
 
-console.log(objectEdit.inputList[0].value);
+
 
 
