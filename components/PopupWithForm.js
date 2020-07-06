@@ -3,8 +3,8 @@ import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
     constructor(callback, { popupSelector, darkSelector }) {
         super({ popupSelector, darkSelector });
-        this._arrayList = Array.from(document.querySelectorAll(`${popupSelector}__input`)),
-            this._callback = callback;
+        this._arrayList = Array.from(document.querySelectorAll(`${popupSelector}__input`));
+        this._callback = callback;
     }
     _getInputValues() {
         const newData = {
@@ -15,19 +15,19 @@ export default class PopupWithForm extends Popup {
         //collect data from all input fields
     }
     setEventListeners() {
-        //click and close
-        super.setEventListeners();
+        
         //submit
         this._popupItem.addEventListener('submit', this._callback);
-        //close the save button
+        //close when clicking the form button
         document.querySelector(`${this._popupSelector}__button`).addEventListener('click', () => {
-            this.close();
-            this._callback;
-        })
+           super.close();
+        });
+        //click and close
+        super.setEventListeners();
     }
     close() {
         super.close();
         //reset the from
-        this._popupItem.reset;
+        document.querySelector(`${this._popupSelector}__form`).reset();
     }
 }

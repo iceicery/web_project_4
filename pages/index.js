@@ -79,7 +79,6 @@ addButton.addEventListener('click', () => {
 });
 
 
-
 //object list for edit form
 const objectEdit = {
     errorClass: "formElement-error",
