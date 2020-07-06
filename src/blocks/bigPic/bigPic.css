@@ -1,0 +1,21 @@
+@import url('./__title/bigPic__title.css');
+@import url('./__img/bigPic__img.css');
+@import url('./__button-icon/bigPic__button-icon.css');
+.bigPic {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 90px;
+  z-index: 2;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+@media screen and (max-width:425px) {
+  .bigPic {
+    max-width: 90%;
+    width: 240px;
+    top: 136px;
+  }
+}

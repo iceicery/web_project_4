@@ -1,0 +1,28 @@
+.profile__button-sqr {
+    outline: none;
+    margin-left: 24px;
+    background-image: url('../../../images/pen.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 10px;
+    width: 24px;
+    height: 24px;
+    border: solid;
+    border-color:#fff;
+    border-width: 1px;
+    background-color: #000;
+}
+
+.profile__button-sqr:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+@media screen and (max-width:425px) {
+    .profile__button-sqr {
+        background-size: 8px 8px;
+        margin-left: 12px;
+        width: 18px;
+        height: 18px;
+    }
+}

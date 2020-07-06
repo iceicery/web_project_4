@@ -1,0 +1,23 @@
+.edit__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.edit__input:focus {
+  outline: solid 1px #2F80ED;
+}
+
+@media screen and (max-width:425px) {
+  .edit__input {
+    margin-bottom: 16px;
+    font-size: 12px;
+    line-height: 15px;
+    height: 24px;
+  }
+}
