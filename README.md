@@ -17,7 +17,7 @@ Project is created with:
 
 ## Link to the website
 
-https://iceicery.github.io/web_project_4/
+https://iceicery.github.io/web_project_4/dist/index.html
 
 ## Acknowledgments
 This project is part of Practicum web developer training. 
