@@ -63,7 +63,7 @@ export default class FormValidator {
         })
     }
 
-    enableValidatoin() {
+    enableValidation() {
         this._formSelector.addEventListener("sumbit", (evt) => {
             evt.preventDefault();
         });

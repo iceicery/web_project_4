@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css"; 
+//import "./index.css"; 
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -12,14 +12,14 @@ import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
 
+//create popupImg class for enlarge picture
+const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
 //add image element to elements container by creating new Section
 const addImgList = new Section({
     data: initialCards, renderer: (item) => {
         const card = new Card({
-            data: item, handleCardClick: () => {
-                const popupImg = new PopupWithImage(item, { popupSelector: '.bigPic', darkSelector: darkenDark });
-                popupImg.open();
-                popupImg.setEventListeners();
+            data: item, handleCardClick: () => {               
+                popupImg.open(item); 
             }
         }, '#img-template');
         const imgElement = card.createCard();
@@ -29,19 +29,21 @@ const addImgList = new Section({
 
 addImgList.renderer();
 
+
+
+
 //edit from
 // update new userinfo when submitting the edit form
+const user = new UserInfo(nameInput.value, jobInput.value);
+
 const formSubmitHandler = (evt) => {
     evt.preventDefault();
-    const user = new UserInfo(nameInput.value, jobInput.value);
     user.setUserInfo();
 }
 
 const editFormPopup = new PopupWithForm((evt) => {
     formSubmitHandler(evt);
 }, { popupSelector: '.edit', darkSelector: darken });
-
-editFormPopup.setEventListeners();
 
 //open edit form
 editButton.addEventListener("click", () => {
@@ -57,9 +59,7 @@ const addFormSubmitHandler = (evt) => {
         data: newData, renderer: (item) => {
             const card = new Card({
                 data: item, handleCardClick: () => {
-                    const popupImg = new PopupWithImage(item, { popupSelector: '.bigPic', darkSelector: darkenDark });
-                    popupImg.open();
-                    popupImg.setEventListeners();
+                    popupImg.open(item);
                 }
             }, '#img-template');
             const imgElement = card.createCard();
@@ -73,8 +73,6 @@ const addFormSubmitHandler = (evt) => {
 const addFormPopup = new PopupWithForm((evt) => {
     addFormSubmitHandler(evt);
 }, { popupSelector: '.add', darkSelector: darken });
-
-addFormPopup.setEventListeners();
 //open add form
 addButton.addEventListener('click', () => {
     addFormPopup.open();
@@ -102,8 +100,8 @@ const objectAdd = {
 const editValidClass = new FormValidator(objectEdit, formElement);
 const addValidClass = new FormValidator(objectAdd, addElements);
 
-editValidClass.enableValidatoin();
-addValidClass.enableValidatoin();
+editValidClass.enableValidation();
+addValidClass.enableValidation();
 
 
 

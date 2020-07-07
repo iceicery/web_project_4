@@ -4,7 +4,7 @@
   "description": "Website/Around the U.S.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "rm -rf dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
@@ -18,11 +18,8 @@
   },
   "homepage": "https://github.com/iceicery/web_project_4#readme",
   "dependencies": {
-    "add": "^2.0.6",
     "babel-polyfill": "^6.26.0",
-    "core-js": "^3.6.5",
-    "jquery": "^3.5.1",
-    "yarn": "^1.22.4"
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",

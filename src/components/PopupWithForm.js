@@ -15,7 +15,6 @@ export default class PopupWithForm extends Popup {
         //collect data from all input fields
     }
     setEventListeners() {
-        
         //submit
         this._popupItem.addEventListener('submit', this._callback);
         //close when clicking the form button
