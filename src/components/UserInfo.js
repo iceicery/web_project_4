@@ -1,9 +1,7 @@
-import { titleToChange, subtitleToChange } from "../utils/utils.js";
-
 export default class UserInfo {
-    constructor(userName, userJob) {
-        this._name = userName;
-        this._job = userJob;
+    constructor(titleContainer, subtitleContainer) {
+        this._titleContainer = titleContainer;
+        this._subtitleContainer = subtitleContainer;
     }
     getUserInfo() {
         const userData = {
@@ -12,8 +10,8 @@ export default class UserInfo {
         }
         return userData;
     }
-    setUserInfo() {
-        titleToChange.textContent = this._name;
-        subtitleToChange.textContent = this._job;
+    setUserInfo(name,job) {
+        this._titleContainer.textContent = name;
+        this._subtitleContainer.textContent = job;
     }
 }

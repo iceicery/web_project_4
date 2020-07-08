@@ -34,11 +34,11 @@ addImgList.renderer();
 
 //edit from
 // update new userinfo when submitting the edit form
-const user = new UserInfo(nameInput.value, jobInput.value);
+const user = new UserInfo(titleToChange, subtitleToChange);
 
 const formSubmitHandler = (evt) => {
     evt.preventDefault();
-    user.setUserInfo();
+    user.setUserInfo(nameInput.value,jobInput.value);
 }
 
 const editFormPopup = new PopupWithForm((evt) => {
