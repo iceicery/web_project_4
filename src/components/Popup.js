@@ -31,6 +31,6 @@ export default class Popup {
         this._darkSelector.addEventListener('click', () => {
             this.close();
         });
-        
+
     }
 }

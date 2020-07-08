@@ -19,7 +19,7 @@ export default class PopupWithForm extends Popup {
         this._popupItem.addEventListener('submit', this._callback);
         //close when clicking the form button
         document.querySelector(`${this._popupSelector}__button`).addEventListener('click', () => {
-           super.close();
+            super.close();
         });
         //click and close
         super.setEventListeners();

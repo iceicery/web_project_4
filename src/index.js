@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css"; 
+import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -18,8 +18,8 @@ const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: da
 const addImgList = new Section({
     data: initialCards, renderer: (item) => {
         const card = new Card({
-            data: item, handleCardClick: () => {               
-                popupImg.open(item); 
+            data: item, handleCardClick: () => {
+                popupImg.open(item);
             }
         }, '#img-template');
         const imgElement = card.createCard();
@@ -38,7 +38,7 @@ const user = new UserInfo(titleToChange, subtitleToChange);
 
 const formSubmitHandler = (evt) => {
     evt.preventDefault();
-    user.setUserInfo(nameInput.value,jobInput.value);
+    user.setUserInfo(nameInput.value, jobInput.value);
 }
 
 const editFormPopup = new PopupWithForm((evt) => {
