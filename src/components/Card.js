@@ -41,7 +41,7 @@ export default class Card {
         });
         //enlarge items
         this._element.querySelector('.elements__img').addEventListener('click', () => {
-            this._handleCardClick();
+            this._handleCardClick(this._name,this._link);
         })
     }
 }
