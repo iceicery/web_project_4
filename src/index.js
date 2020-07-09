@@ -29,21 +29,15 @@ const addImgList = new Section({
 
 addImgList.renderer();
 
-
-
-
 //edit from
 // update new userinfo when submitting the edit form
 const user = new UserInfo(titleToChange, subtitleToChange);
 
-const formSubmitHandler = (evt) => {
-    evt.preventDefault();
+const formSubmitHandler = () => {
     user.setUserInfo(nameInput.value, jobInput.value);
 }
 
-const editFormPopup = new PopupWithForm((evt) => {
-    formSubmitHandler(evt);
-}, { popupSelector: '.edit', darkSelector: darken });
+const editFormPopup = new PopupWithForm(formSubmitHandler, { popupSelector: '.edit', darkSelector: darken });
 
 //open edit form
 editButton.addEventListener("click", () => {
@@ -52,14 +46,13 @@ editButton.addEventListener("click", () => {
 
 //add from
 //get new img when submiting the add form
-const addFormSubmitHandler = (evt) => {
-    evt.preventDefault();
+const addFormSubmitHandler = () => {
     const newData = [{ name: imgTitleValue.value, link: imgLinkValue.value }];
     const addImgList = new Section({
         data: newData, renderer: (item) => {
             const card = new Card({
-                data: item, handleCardClick: () => {
-                    popupImg.open(item);
+                data: item, handleCardClick: (name,link) => {
+                    popupImg.open(name,link);
                 }
             }, '#img-template');
             const imgElement = card.createCard();
@@ -70,9 +63,7 @@ const addFormSubmitHandler = (evt) => {
     addImgList.renderer();
 };
 
-const addFormPopup = new PopupWithForm((evt) => {
-    addFormSubmitHandler(evt);
-}, { popupSelector: '.add', darkSelector: darken });
+const addFormPopup = new PopupWithForm(addFormSubmitHandler, { popupSelector: '.add', darkSelector: darken });
 //open add form
 addButton.addEventListener('click', () => {
     addFormPopup.open();
