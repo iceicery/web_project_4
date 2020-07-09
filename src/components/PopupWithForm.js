@@ -6,9 +6,10 @@ export default class PopupWithForm extends Popup {
         this._callback = callback;
     }
     _getInputValues() {
+        //const inputArray = Array.from(this._popupItem.querySelectorAll(`${this._popupSelector}__input`));
         const newData = {
-            name: this._popupItem.querySelector(`${this._popupSelector}__input-name`),
-            link: this._popupItem.querySelector(`${this._popupSelector}__input-link`)
+            name: this._popupItem.querySelector(`${this._popupSelector}__input-name`).value,
+            link: this._popupItem.querySelector(`${this._popupSelector}__input-job`).value
         };
         return newData;
         //collect data from all input fields
@@ -17,7 +18,8 @@ export default class PopupWithForm extends Popup {
         //submit
         this._popupItem.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._callback();
+            const newData=this._getInputValues();
+            this._callback(newData);
             super.close();
         });
 

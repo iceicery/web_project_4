@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css";
+//import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -33,8 +33,8 @@ addImgList.renderer();
 // update new userinfo when submitting the edit form
 const user = new UserInfo(titleToChange, subtitleToChange);
 
-const formSubmitHandler = () => {
-    user.setUserInfo(nameInput.value, jobInput.value);
+const formSubmitHandler = (newData) => {
+    user.setUserInfo(newData.name, newData.link);
 }
 
 const editFormPopup = new PopupWithForm(formSubmitHandler, { popupSelector: '.edit', darkSelector: darken });
@@ -46,10 +46,10 @@ editButton.addEventListener("click", () => {
 
 //add from
 //get new img when submiting the add form
-const addFormSubmitHandler = () => {
-    const newData = [{ name: imgTitleValue.value, link: imgLinkValue.value }];
+const addFormSubmitHandler = (newData) => {
+    //const newData = [{ name: imgTitleValue.value, link: imgLinkValue.value }];
     const addImgList = new Section({
-        data: newData, renderer: (item) => {
+        data: [newData], renderer: (item) => {
             const card = new Card({
                 data: item, handleCardClick: (name, link) => {
                     popupImg.open(name, link);
