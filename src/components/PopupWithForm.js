@@ -6,10 +6,10 @@ export default class PopupWithForm extends Popup {
         this._callback = callback;
     }
     _getInputValues() {
-        //const inputArray = Array.from(this._popupItem.querySelectorAll(`${this._popupSelector}__input`));
+        const form=this._popupItem.querySelector(`${this._popupSelector}__form`);
         const newData = {
-            name: this._popupItem.querySelector(`${this._popupSelector}__input-name`).value,
-            link: this._popupItem.querySelector(`${this._popupSelector}__input-job`).value
+            name: form.name.value,
+            link: form.link.value
         };
         return newData;
         //collect data from all input fields

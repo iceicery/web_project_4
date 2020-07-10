@@ -3,10 +3,10 @@ export default class UserInfo {
         this._titleContainer = titleContainer;
         this._subtitleContainer = subtitleContainer;
     }
-    getUserInfo() {
+    getUserInfo(name,job) {
         const userData = {
-            userName: this._name,
-            userJob: this._job
+            userName: name,
+            userJob: job
         }
         return userData;
     }
