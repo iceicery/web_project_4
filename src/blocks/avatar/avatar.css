@@ -1,0 +1,21 @@
+@import url('./__title/avatar__title.css');
+@import url('./__input/avatar__input.css');
+@import url('./__form/avatar__form.css');
+@import url('./__button/avatar__button.css');
+@import url('./__button-icon/avatar__button-icon.css');
+.avatar {
+    position: absolute;
+    max-width: 75%;
+    width: 430px;
+    height: 272px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 224px;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, .15);
+    border-radius: 10px;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}

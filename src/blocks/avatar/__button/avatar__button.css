@@ -1,0 +1,29 @@
+.avatar__button {
+    outline: none;
+    background-color: #000;
+    color: #fff;
+    width: 358px;
+    height: 50px;
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    position: absolute;
+    right: 36px;
+    bottom: 72px;
+}
+
+.avatar__button:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+@media screen and (max-width:425px) {
+    .avatar__button {
+        margin-top: 36px;
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

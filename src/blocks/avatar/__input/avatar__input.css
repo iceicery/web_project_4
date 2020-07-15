@@ -1,0 +1,24 @@
+.avatar__input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    width: 80.3%;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 36px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.avatar__input:focus {
+    outline: solid 1px #2F80ED;
+}
+
+@media screen and (max-width:425px) {
+    .avatar__input {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 15px;
+        height: 24px;
+    }
+}
