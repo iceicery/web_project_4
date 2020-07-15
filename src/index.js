@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css";
+//import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -11,6 +11,46 @@ import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
+
+//make a request to the server
+//user info
+fetch("https://around.nomoreparties.co/v1/group-2/users/me",{
+    headers: {
+        authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8"
+      }
+})
+.then(res => res.json());
+//card
+fetch("https://around.nomoreparties.co/v1/group-2/cards", {
+  headers: {
+    authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8"
+  }
+})
+.then(res => res.json());
+//edit the profile
+fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
+  method: "PATCH",
+  headers: {
+    authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Marie Skłodowska Curie",
+    about: "Physicist and Chemist"
+  })
+});
+//add a new card  
+fetch("https://around.nomoreparties.co/v1/group-2/cards", {
+  method: "POST",
+  headers: {
+    authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Marie Skłodowska Curie",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  })
+});
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
