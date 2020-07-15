@@ -1,9 +1,8 @@
 .profile__img {
     border-radius: 50%;
-    width: 128px;
-    height: 128px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
-    margin-right: calc(168.75px - 127.5px);
 }
 
 @media screen and (max-width:425px) {

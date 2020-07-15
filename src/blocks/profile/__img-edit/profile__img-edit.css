@@ -1,0 +1,15 @@
+.profile__img-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 26px;
+    height: 26px;
+    padding: 47px;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+}
+
+.profile__img-edit:hover {
+    opacity: 1;
+    cursor: pointer;
+}

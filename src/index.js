@@ -19,7 +19,14 @@ fetch("https://around.nomoreparties.co/v1/group-2/users/me",{
         authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8"
       }
 })
-.then(res => res.json());
+.then (res => {
+    if (res.ok){
+        return res.json();
+    }else{
+        return Promise.reject(res.status);
+    }
+});
+
 //card
 fetch("https://around.nomoreparties.co/v1/group-2/cards", {
   headers: {
@@ -47,10 +54,12 @@ fetch("https://around.nomoreparties.co/v1/group-2/cards", {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-    name: "Marie Skłodowska Curie",
+    name: "test",
     link: "https://code.s3.yandex.net/web-code/lago.jpg"
   })
 });
+
+
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });

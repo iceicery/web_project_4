@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css"> 
+    <link rel="stylesheet" href="./index.css">
     <title>Around the U.S.</title>
 </head>
 
@@ -16,7 +16,10 @@
     </header>
     <main class="container">
         <section class="profile">
-            <img src="images/explorer.jpg" alt="explorer" class="profile__img">
+            <div class="profile__img-container">
+                <img src="images/explorer.jpg" alt="explorer" class="profile__img">
+                <img src="images/pen.svg" alt="button" class="profile__img-edit">
+            </div>
             <div class="profile__text-container">
                 <div class="profile__title-box">
                     <h1 class="profile__title">Jacques Cousteau</h1><button class="profile__button-sqr"></button>
@@ -47,11 +50,11 @@
             <button class="add__button-icon"></button>
             <form class="add__form" novalidate>
                 <h2 class="add__title">New Place</h2>
-                <input type="text" id="title" class="add__input add__input-title add__input-name" name="name" placeholder="Title"
-                    value="" required minlength="1" maxlength="30">
+                <input type="text" id="title" class="add__input add__input-title add__input-name" name="name"
+                    placeholder="Title" value="" required minlength="1" maxlength="30">
                 <span class="add__title-error" id="title-error"></span>
-                <input type="url" id="link" class="add__input add__input-img add__input-link" name="link" placeholder="Image link"
-                    value="" required minlength="1">
+                <input type="url" id="link" class="add__input add__input-img add__input-link" name="link"
+                    placeholder="Image link" value="" required minlength="1">
                 <span class="add__link-error" id="link-error"></span>
                 <button class="add__button">Create</button>
             </form>
@@ -60,6 +63,11 @@
             <button class="bigPic__button-icon"></button>
             <img src="./images/yosemite.jpg" alt="BigPicture" class="bigPic__img">
             <p class="bigPic__title">Yosemite Valley</p>
+        </section>
+        <section class="remove hidden">
+            <button class="remove__button-icon"></button>
+            <h2 class="remove__title">Are you sure?</h2>
+            <button class="remove__button">Yes</button>
         </section>
     </main>
     <footer class="footer">
@@ -71,7 +79,10 @@
             <button class="elements__trash"></button>
             <div class="elements__title-box">
                 <h2 class="elements__title">Lago di Braies</h2>
-                <button class="elements__heart"></button>
+                <div class="elements__like-box">
+                    <button class="elements__heart"></button>
+                    <p class="elements__like-count">1</p>
+                </div>
             </div>
         </li>
     </template>
