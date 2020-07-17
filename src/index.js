@@ -13,27 +13,51 @@ import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
 import Api from "./components/Api.js";
 
-
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
-//add image element to elements container by creating new Section
-const addImgList = new Section({
-    data: initialCards, renderer: (item) => {
-        const card = new Card({
-            data: item, handleCardClick: (name, link) => {
-                popupImg.open(name, link);
-            }
-        }, '#img-template');
-        const imgElement = card.createCard();
-        addImgList.addItem(imgElement);
-    }
-}, '.elements__container');
 
-addImgList.renderer();
+const api = new Api({
+    baseUrl:"https://around.nomoreparties.co/v1/group-2",
+    headers:{
+        authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
+        "Content-Type": "application/json"
+    }
+})
+
+//add initail cards from server to elements container
+api.getInitialCards()
+.then(res=>{
+    const addImgList = new Section({
+        data: res, renderer: (item) => {
+            const card = new Card({
+                data: item, handleCardClick: (name, link) => {
+                    popupImg.open(name, link);
+                }
+            }, '#img-template');
+            const imgElement = card.createCard();
+            addImgList.addItem(imgElement);
+        }
+    }, '.elements__container');
+    
+    addImgList.renderer();
+})
+.catch(error=>{
+    console.log(error)
+})
+
+const user = new UserInfo(titleToChange, subtitleToChange);
+//add inital userInfo to container
+api.getUserInfo()
+.then(res=>{
+    user.setUserInfo(res.name,res.link);
+})
+.catch(error=>{
+    console.log(error)
+})
 
 //edit from
 // update new userinfo when submitting the edit form
-const user = new UserInfo(titleToChange, subtitleToChange);
+
 
 const formSubmitHandler = (newData) => {
     user.setUserInfo(newData.name, newData.link);
