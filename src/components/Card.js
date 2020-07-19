@@ -1,9 +1,12 @@
+import {userId, api} from "../utils/utils.js";
 export default class Card {
-    constructor({ data, handleCardClick }, cardSelector) {
+      constructor({ data, handleCardClick }, cardSelector,ownerId,cardId){
         this._cardSelector = cardSelector;
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
+        this._ownerId=ownerId;
+        this._cardId=cardId;
     }
     //clone template for image elements
     _getTemplate() {
@@ -22,13 +25,17 @@ export default class Card {
 
 
         this._element.querySelector(".elements__title").textContent = this._name;
-        this._element.querySelector(".elements__img").src = this._link;
+        this._element.querySelector(".elements__img").src = this._link;      
+        if (this._ownerId === userId){
+            this._element.querySelector(".elements__trash").classList.remove('hidden');
+        }
         this._setEventListeners();
         return this._element;
     }
 
     _removeItem() {
         this._element.remove();
+        api.deleteCard(this._cardId);
     }
     _setEventListeners() {
         //like items

@@ -4,7 +4,7 @@
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
 import {
-    container, editButton, formElement, darken, nameInput, jobInput, titleToChange, subtitleToChange,
+    container, editButton, formElement, darken, nameInput, jobInput, titleToChange, subtitleToChange, userId,
     addButton, addElements, imgTitleValue, imgLinkValue, darkenDark, initialCards, api, profileImg, profileImgBox
 } from "./utils/utils.js";
 import Section from "./components/Section.js";
@@ -20,11 +20,13 @@ api.getInitialCards()
 .then(res=>{
     const addImgList = new Section({
         data: res, renderer: (item) => {
+            const ownerId= item.owner._id;
+            const cardId=item._id;
             const card = new Card({
                 data: item, handleCardClick: (name, link) => {
                     popupImg.open(name, link);
                 }
-            }, '#img-template');
+            }, '#img-template',ownerId,cardId);
             const imgElement = card.createCard();
             addImgList.addItem(imgElement);
         }
@@ -41,6 +43,7 @@ const user = new UserInfo(titleToChange, subtitleToChange);
 api.getUserInfo()
 .then(res=>{
     user.setUserInfo(res.name,res.about);
+    profileImg.src=res.avatar;
 })
 .catch(error=>{
     console.log(error)
@@ -89,6 +92,7 @@ addButton.addEventListener('click', () => {
     addFormPopup.open();
 });
 
+//avatar popup
 const avatarFormSubmitHandler=(newData) =>{
     profileImg.src = newData.link;
     api.editProfilePic(newData.link);
@@ -122,5 +126,3 @@ const addValidClass = new FormValidator(objectAdd, addElements);
 
 editValidClass.enableValidation();
 addValidClass.enableValidation();
-
-

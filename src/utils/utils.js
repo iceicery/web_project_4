@@ -25,8 +25,10 @@ export const api = new Api({
     headers:{
         authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
         "Content-Type": "application/json"
-    }
-})
+    },
+    userId:"ac6044650092e0692f027c6c"
+});
+export const userId = api.getId();
 
 
 
