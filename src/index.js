@@ -5,24 +5,15 @@ import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
 import {
     container, editButton, formElement, darken, nameInput, jobInput, titleToChange, subtitleToChange,
-    addButton, addElements, imgTitleValue, imgLinkValue, darkenDark, initialCards
+    addButton, addElements, imgTitleValue, imgLinkValue, darkenDark, initialCards, api, profileImg, profileImgBox
 } from "./utils/utils.js";
 import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import UserInfo from "./components/UserInfo.js";
-import Api from "./components/Api.js";
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
-
-const api = new Api({
-    baseUrl:"https://around.nomoreparties.co/v1/group-2",
-    headers:{
-        authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
-        "Content-Type": "application/json"
-    }
-})
 
 //add initail cards from server to elements container
 api.getInitialCards()
@@ -49,19 +40,20 @@ const user = new UserInfo(titleToChange, subtitleToChange);
 //add inital userInfo to container
 api.getUserInfo()
 .then(res=>{
-    user.setUserInfo(res.name,res.link);
+    user.setUserInfo(res.name,res.about);
 })
 .catch(error=>{
     console.log(error)
 })
 
+
 //edit from
 // update new userinfo when submitting the edit form
-
-
 const formSubmitHandler = (newData) => {
     user.setUserInfo(newData.name, newData.link);
-}
+    api.editProfile(newData.name,newData.link);
+};
+
 
 const editFormPopup = new PopupWithForm(formSubmitHandler, { popupSelector: '.edit', darkSelector: darken });
 
@@ -87,13 +79,24 @@ const addFormSubmitHandler = (newData) => {
     }, '.elements__container');
 
     addImgList.renderer();
+    api.postNewCard(newData.name,newData.link);
 };
+
 
 const addFormPopup = new PopupWithForm(addFormSubmitHandler, { popupSelector: '.add', darkSelector: darken });
 //open add form
 addButton.addEventListener('click', () => {
     addFormPopup.open();
 });
+
+const avatarFormSubmitHandler=(newData) =>{
+    profileImg.src = newData.link;
+    api.editProfilePic(newData.link);
+}
+const avatarFormPopup = new PopupWithForm(avatarFormSubmitHandler,{ popupSelector:".avatar",darkSelector: darken});
+profileImgBox.addEventListener('click',()=>{
+    avatarFormPopup.open();
+})
 
 
 //object list for edit form

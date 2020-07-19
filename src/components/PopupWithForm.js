@@ -21,6 +21,7 @@ export default class PopupWithForm extends Popup {
             const newData=this._getInputValues();
             this._callback(newData);
             super.close();
+            
         });
 
         //click and close
@@ -31,4 +32,6 @@ export default class PopupWithForm extends Popup {
         //reset the from
         document.querySelector(`${this._popupSelector}__form`).reset();
     }
+    
 }
+

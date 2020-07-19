@@ -35,11 +35,11 @@ export default class Api{
 
         })
     }
-
+//PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
     editProfilePic(newLink){
         fetch(`${this.url}/users/me/avatar`,{
             method:"PATCH",
-            hearders:this.headers,
+            headers:this.headers,
             body:JSON.stringify({
                 avatar:newLink
             })

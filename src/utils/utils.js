@@ -1,3 +1,4 @@
+import Api from "../components/Api.js";
 //DOM//
 export const container = document.querySelector('.container');
 export const editButton = container.querySelector('.profile__button-sqr');
@@ -17,6 +18,18 @@ export const addElements = container.querySelector('.add');
 export const imgTitleValue = container.querySelector(".add__input-title");
 export const imgLinkValue = container.querySelector(".add__input-img");
 export const darkenDark = document.querySelector('.darken-dark');
+export const profileImgBox = container.querySelector('.profile__img-container');
+export const profileImg = container.querySelector('.profile__img');
+export const api = new Api({
+    baseUrl:"https://around.nomoreparties.co/v1/group-2",
+    headers:{
+        authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
+        "Content-Type": "application/json"
+    }
+})
+
+
+
 export const initialCards = [
     {
         name: "Yosemite Valley",
