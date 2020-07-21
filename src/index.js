@@ -15,8 +15,7 @@ import UserInfo from "./components/UserInfo.js";
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
-//create popupWithConfrim class for confirm removing element
-const popupRemove = new PopupWithConfirm({ popupSelector:'.remove', darkSelector:darken});
+
 //add initail cards from server to elements container
 api.getInitialCards()
     .then(res => {
@@ -39,9 +38,10 @@ api.getInitialCards()
                     handleCardClick: (name, link) => {
                         popupImg.open(name, link);
                     },
-                    handleCardRemove: (removeItem,deleteCard)=>{
-                        
-                        popupRemove.open(removeItem, deleteCard);
+                    handleCardRemove: (callback)=>{
+                        //create popupWithConfrim class for confirm removing
+                        const popupRemove = new PopupWithConfirm(callback,{ popupSelector:'.remove', darkSelector:darken});
+                        popupRemove.open();
                         }
                     
                 }, '#img-template', ownerId, cardId, likeCount, isLike);

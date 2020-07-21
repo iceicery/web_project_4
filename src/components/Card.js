@@ -73,10 +73,9 @@ export default class Card {
             this._toggleLike();
         });
         //remove items
-        const removeItem=this._element;
-        const deleteCard=this._cardId;
         this._element.querySelector('.elements__trash').addEventListener('click', () => {
-            this._handleCardRemove(removeItem,deleteCard);
+            console.log(this._removeItem);
+            this._handleCardRemove(this._removeItem);
         });
         //enlarge items
         this._element.querySelector('.elements__img').addEventListener('click', () => {
