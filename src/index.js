@@ -17,44 +17,54 @@ const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: da
 
 //add initail cards from server to elements container
 api.getInitialCards()
-.then(res=>{
-    const addImgList = new Section({
-        data: res, renderer: (item) => {
-            const ownerId= item.owner._id;
-            const cardId=item._id;
-            const card = new Card({
-                data: item, handleCardClick: (name, link) => {
-                    popupImg.open(name, link);
+    .then(res => {
+        const addImgList = new Section({
+            data: res, renderer: (item) => {
+                const ownerId = item.owner._id;
+                const cardId = item._id;
+                const likeCount = item.likes.length;
+                //check if the user already liked the image
+                let isLike = false;
+                for (let i = 0; i < item.likes.length; i++) {
+                    if (item.likes[i]._id == userId) {
+                        isLike = true;
+                        break;
+                    }
                 }
-            }, '#img-template',ownerId,cardId);
-            const imgElement = card.createCard();
-            addImgList.addItem(imgElement);
-        }
-    }, '.elements__container');
-    
-    addImgList.renderer();
-})
-.catch(error=>{
-    console.log(error)
-})
+
+                const card = new Card({
+                    data: item, handleCardClick: (name, link) => {
+                        popupImg.open(name, link);
+                    }
+                }, '#img-template', ownerId, cardId, likeCount, isLike);
+                const imgElement = card.createCard();
+                addImgList.addItem(imgElement);
+            }
+        }, '.elements__container');
+
+        addImgList.renderer();
+    })
+    .catch(error => {
+        console.log(error)
+    })
 
 const user = new UserInfo(titleToChange, subtitleToChange);
 //add inital userInfo to container
 api.getUserInfo()
-.then(res=>{
-    user.setUserInfo(res.name,res.about);
-    profileImg.src=res.avatar;
-})
-.catch(error=>{
-    console.log(error)
-})
+    .then(res => {
+        user.setUserInfo(res.name, res.about);
+        profileImg.src = res.avatar;
+    })
+    .catch(error => {
+        console.log(error)
+    })
 
 
 //edit from
 // update new userinfo when submitting the edit form
 const formSubmitHandler = (newData) => {
     user.setUserInfo(newData.name, newData.link);
-    api.editProfile(newData.name,newData.link);
+    api.editProfile(newData.name, newData.link);
 };
 
 
@@ -67,22 +77,26 @@ editButton.addEventListener("click", () => {
 
 //add from
 //get new img when submiting the add form
-const addFormSubmitHandler = (newData) => {
-    //const newData = [{ name: imgTitleValue.value, link: imgLinkValue.value }];
-    const addImgList = new Section({
-        data: [newData], renderer: (item) => {
-            const card = new Card({
-                data: item, handleCardClick: (name, link) => {
-                    popupImg.open(name, link);
-                }
-            }, '#img-template');
-            const imgElement = card.createCard();
-            addImgList.addItem(imgElement);
-        }
-    }, '.elements__container');
+    
 
-    addImgList.renderer();
-    api.postNewCard(newData.name,newData.link);
+const addFormSubmitHandler = (newData) => {
+    api.postNewCard(newData.name,newData.link)
+    .then(res =>{
+        const addImgList = new Section({
+            data: [res], renderer: (item) => {
+                const cardId = item._id;
+                const card = new Card({
+                    data: item, handleCardClick: (name, link) => {
+                        popupImg.open(name, link);
+                    }
+                }, '#img-template',userId,cardId,0,false);
+                const imgElement = card.createCard();
+                addImgList.addItem(imgElement);
+            }
+        }, '.elements__container');
+    
+        addImgList.renderer();
+    })
 };
 
 
@@ -93,12 +107,12 @@ addButton.addEventListener('click', () => {
 });
 
 //avatar popup
-const avatarFormSubmitHandler=(newData) =>{
+const avatarFormSubmitHandler = (newData) => {
     profileImg.src = newData.link;
     api.editProfilePic(newData.link);
 }
-const avatarFormPopup = new PopupWithForm(avatarFormSubmitHandler,{ popupSelector:".avatar",darkSelector: darken});
-profileImgBox.addEventListener('click',()=>{
+const avatarFormPopup = new PopupWithForm(avatarFormSubmitHandler, { popupSelector: ".avatar", darkSelector: darken });
+profileImgBox.addEventListener('click', () => {
     avatarFormPopup.open();
 })
 
@@ -126,3 +140,4 @@ const addValidClass = new FormValidator(objectAdd, addElements);
 
 editValidClass.enableValidation();
 addValidClass.enableValidation();
+

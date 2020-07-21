@@ -53,7 +53,7 @@ export default class Api {
     }
     //POST https://around.nomoreparties.co/v1/groupId/cards
     postNewCard(newName, newLink) {
-        fetch(`${this.url}/cards`, {
+        return fetch(`${this.url}/cards`, {
             method: "POST",
             headers: this.headers,
             body: JSON.stringify({
@@ -61,6 +61,7 @@ export default class Api {
                 link: newLink
             })
         })
+            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     }
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
     deleteCard(cardId) {
