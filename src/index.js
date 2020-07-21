@@ -10,11 +10,13 @@ import {
 import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithForm from "./components/PopupWithForm.js";
+import PopupWithConfirm from "./components/PopupWithConfirm.js";
 import UserInfo from "./components/UserInfo.js";
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
-
+//create popupWithConfrim class for confirm removing element
+const popupRemove = new PopupWithConfirm({ popupSelector:'.remove', darkSelector:darken});
 //add initail cards from server to elements container
 api.getInitialCards()
     .then(res => {
@@ -33,9 +35,15 @@ api.getInitialCards()
                 }
 
                 const card = new Card({
-                    data: item, handleCardClick: (name, link) => {
+                    data: item, 
+                    handleCardClick: (name, link) => {
                         popupImg.open(name, link);
-                    }
+                    },
+                    handleCardRemove: (removeItem,deleteCard)=>{
+                        
+                        popupRemove.open(removeItem, deleteCard);
+                        }
+                    
                 }, '#img-template', ownerId, cardId, likeCount, isLike);
                 const imgElement = card.createCard();
                 addImgList.addItem(imgElement);
@@ -115,6 +123,7 @@ const avatarFormPopup = new PopupWithForm(avatarFormSubmitHandler, { popupSelect
 profileImgBox.addEventListener('click', () => {
     avatarFormPopup.open();
 })
+
 
 
 //object list for edit form

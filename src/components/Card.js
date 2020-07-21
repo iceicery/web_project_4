@@ -1,11 +1,12 @@
 import { userId, api } from "../utils/utils.js";
 
 export default class Card {
-    constructor({ data, handleCardClick}, cardSelector, ownerId, cardId, likeCount, isLike) {
+    constructor({ data, handleCardClick, handleCardRemove}, cardSelector, ownerId, cardId, likeCount, isLike) {
         this._cardSelector = cardSelector;
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
+        this._handleCardRemove = handleCardRemove;
         this._ownerId = ownerId;
         this._cardId = cardId;
         this._likeCount = likeCount;
@@ -72,8 +73,10 @@ export default class Card {
             this._toggleLike();
         });
         //remove items
+        const removeItem=this._element;
+        const deleteCard=this._cardId;
         this._element.querySelector('.elements__trash').addEventListener('click', () => {
-            this._removeItem();
+            this._handleCardRemove(removeItem,deleteCard);
         });
         //enlarge items
         this._element.querySelector('.elements__img').addEventListener('click', () => {
