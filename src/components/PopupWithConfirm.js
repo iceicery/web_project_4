@@ -7,16 +7,21 @@ export default class PopupWithConfirm extends Popup {
 
     open(item, id) {
         super.open();
-        this.setEventListeners(item, id);
+        this.remove(item,id);
+        this.setEventListeners();
+    }
+    
+    remove(item,id){
+        this._popupItem.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            super.close();
+            api.deleteCard(id);
+            item.remove();
+        });
     }
 
-    setEventListeners(item, id) {
+    setEventListeners() {
         //submit
-        this._popupItem.addEventListener('click', () => {
-            item.remove();
-            api.deleteCard(id);
-            super.close();
-        });
         super.setEventListeners();
 
     }
