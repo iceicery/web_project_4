@@ -4,8 +4,8 @@
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
 import {
-    container, editButton, formElement, darken, nameInput, jobInput, titleToChange, subtitleToChange, userId,
-    addButton, addElements, imgTitleValue, imgLinkValue, darkenDark, initialCards, api, profileImg, profileImgBox
+    editButton, formElement, darken,  titleToChange, subtitleToChange, userId,
+    addButton, addElements, darkenDark, api, profileImg, profileImgBox
 } from "./utils/utils.js";
 import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";

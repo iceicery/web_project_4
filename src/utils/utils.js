@@ -21,17 +21,17 @@ export const darkenDark = document.querySelector('.darken-dark');
 export const profileImgBox = container.querySelector('.profile__img-container');
 export const profileImg = container.querySelector('.profile__img');
 export const api = new Api({
-    baseUrl:"https://around.nomoreparties.co/v1/group-2",
-    headers:{
+    baseUrl: "https://around.nomoreparties.co/v1/group-2",
+    headers: {
         authorization: "0d9e4066-5c0e-4e11-b840-05b0bd7ab1a8",
         "Content-Type": "application/json"
     },
-    userId:"ac6044650092e0692f027c6c"
+    userId: "ac6044650092e0692f027c6c"
 });
 export const userId = api.getId();
 
 
-
+/*
 export const initialCards = [
     {
         name: "Yosemite Valley",
@@ -58,3 +58,4 @@ export const initialCards = [
         link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
 ];
+*/

@@ -6,7 +6,7 @@ export default class PopupWithForm extends Popup {
         this._callback = callback;
     }
     _getInputValues() {
-        const form=this._popupItem.querySelector(`${this._popupSelector}__form`);
+        const form = this._popupItem.querySelector(`${this._popupSelector}__form`);
         const newData = {
             name: form.name.value,
             link: form.link.value
@@ -18,10 +18,10 @@ export default class PopupWithForm extends Popup {
         //submit
         this._popupItem.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            const newData=this._getInputValues();
+            const newData = this._getInputValues();
             this._callback(newData);
             super.close();
-            
+
         });
 
         //click and close
@@ -32,6 +32,6 @@ export default class PopupWithForm extends Popup {
         //reset the from
         document.querySelector(`${this._popupSelector}__form`).reset();
     }
-    
+
 }
 

@@ -1,7 +1,7 @@
 import { userId, api } from "../utils/utils.js";
 
 export default class Card {
-    constructor({ data, handleCardClick, handleCardRemove}, cardSelector, ownerId, cardId, likeCount, isLike) {
+    constructor({ data, handleCardClick, handleCardRemove }, cardSelector, ownerId, cardId, likeCount, isLike) {
         this._cardSelector = cardSelector;
         this._name = data.name;
         this._link = data.link;
@@ -74,9 +74,9 @@ export default class Card {
         });
         //remove items
         this._element.querySelector('.elements__trash').addEventListener('click', () => {
-            const item=this._element;
-            const id=this._cardId;
-            this._handleCardRemove(item,id);
+            const item = this._element;
+            const id = this._cardId;
+            this._handleCardRemove(item, id);
         });
         //enlarge items
         this._element.querySelector('.elements__img').addEventListener('click', () => {
