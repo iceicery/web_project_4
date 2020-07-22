@@ -4,7 +4,7 @@
   "description": "Website/Around the U.S.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "rm -rf || rmdir /s dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
