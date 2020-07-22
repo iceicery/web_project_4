@@ -1,5 +1,5 @@
 //import CSS
-//import "./index.css";
+import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
