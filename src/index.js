@@ -34,16 +34,16 @@ api.getInitialCards()
                 }
 
                 const card = new Card({
-                    data: item, 
+                    data: item,
                     handleCardClick: (name, link) => {
                         popupImg.open(name, link);
                     },
-                    handleCardRemove: (item,id)=>{
+                    handleCardRemove: (item, id) => {
                         //create popupWithConfrim class for confirm removing
-                        const popupRemove = new PopupWithConfirm({ popupSelector:'.remove', darkSelector:darken});
+                        const popupRemove = new PopupWithConfirm({ popupSelector: '.remove', darkSelector: darken });
                         popupRemove.open(item, id);
-                        }
-                    
+                    }
+
                 }, '#img-template', ownerId, cardId, likeCount, isLike);
                 const imgElement = card.createCard();
                 addImgList.addItem(imgElement);
@@ -85,26 +85,31 @@ editButton.addEventListener("click", () => {
 
 //add from
 //get new img when submiting the add form
-    
+
 
 const addFormSubmitHandler = (newData) => {
-    api.postNewCard(newData.name,newData.link)
-    .then(res =>{
-        const addImgList = new Section({
-            data: [res], renderer: (item) => {
-                const cardId = item._id;
-                const card = new Card({
-                    data: item, handleCardClick: (name, link) => {
-                        popupImg.open(name, link);
-                    }
-                }, '#img-template',userId,cardId,0,false);
-                const imgElement = card.createCard();
-                addImgList.addItem(imgElement);
-            }
-        }, '.elements__container');
-    
-        addImgList.renderer();
-    })
+    api.postNewCard(newData.name, newData.link)
+        .then(res => {
+            const addImgList = new Section({
+                data: [res], renderer: (item) => {
+                    const cardId = item._id;
+                    const card = new Card({
+                        data: item, handleCardClick: (name, link) => {
+                            popupImg.open(name, link);
+                        },
+                        handleCardRemove: (item, id) => {
+                            //create popupWithConfrim class for confirm removing
+                            const popupRemove = new PopupWithConfirm({ popupSelector: '.remove', darkSelector: darken });
+                            popupRemove.open(item, id);
+                        }
+                    }, '#img-template', userId, cardId, 0, false);
+                    const imgElement = card.createCard();
+                    addImgList.addItem(imgElement);
+                }
+            }, '.elements__container');
+
+            addImgList.renderer();
+        })
 };
 
 

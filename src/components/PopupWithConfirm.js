@@ -13,9 +13,6 @@ export default class PopupWithConfirm extends Popup{
     setEventListeners(item,id){
         //submit
         this._popupItem.addEventListener('click',()=>{
-            //evt.preventDefault();
-            console.log(id);
-            console.log(item);
             item.remove();
             api.deleteCard(id);
             super.close();
