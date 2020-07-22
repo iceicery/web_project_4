@@ -38,10 +38,10 @@ api.getInitialCards()
                     handleCardClick: (name, link) => {
                         popupImg.open(name, link);
                     },
-                    handleCardRemove: (callback)=>{
+                    handleCardRemove: (item,id)=>{
                         //create popupWithConfrim class for confirm removing
-                        const popupRemove = new PopupWithConfirm(callback,{ popupSelector:'.remove', darkSelector:darken});
-                        popupRemove.open();
+                        const popupRemove = new PopupWithConfirm({ popupSelector:'.remove', darkSelector:darken});
+                        popupRemove.open(item, id);
                         }
                     
                 }, '#img-template', ownerId, cardId, likeCount, isLike);

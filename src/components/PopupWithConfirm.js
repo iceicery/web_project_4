@@ -1,26 +1,23 @@
 import Popup from "./Popup.js";
 import {api} from "../utils/utils.js"
 export default class PopupWithConfirm extends Popup{
-    constructor(callback,{popupSelector, darkSelector}){
+    constructor({popupSelector, darkSelector}){
         super({popupSelector,darkSelector});
-        this._callback=callback;
     }
 
-    open(){
+    open(item,id){
         super.open();
-        this.setEventListeners();
+        this.setEventListeners(item,id);
     }
 
-    deleteCard(removeItem,deleteCard){
-        removeItem.remove();
-        api.deleteCard(deleteCard);
-    }
-
-    setEventListeners(){
+    setEventListeners(item,id){
         //submit
         this._popupItem.addEventListener('click',()=>{
             //evt.preventDefault();
-            this._callback();
+            console.log(id);
+            console.log(item);
+            item.remove();
+            api.deleteCard(id);
             super.close();
         });
         super.setEventListeners();
