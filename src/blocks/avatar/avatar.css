@@ -3,6 +3,7 @@
 @import url('./__form/avatar__form.css');
 @import url('./__button/avatar__button.css');
 @import url('./__button-icon/avatar__button-icon.css');
+@import url('./__link-error/avatar__link-error.css');
 .avatar {
     position: absolute;
     max-width: 75%;

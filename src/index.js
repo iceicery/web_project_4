@@ -5,7 +5,7 @@ import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
 import {
     editButton, formElement, darken,  titleToChange, subtitleToChange, userId,
-    addButton, addElements, darkenDark, api, profileImg, profileImgBox
+    addButton, addElements, darkenDark, api, profileImg, profileImgBox, avatarElements
 } from "./utils/utils.js";
 import Section from "./components/Section.js";
 import PopupWithImage from "./components/PopupWithImage.js";
@@ -133,7 +133,7 @@ profileImgBox.addEventListener('click', () => {
 
 //object list for edit form
 const objectEdit = {
-    errorClass: "formElement-error",
+    errorClass: "formInput-error",
     errorMessageClass: "formInput-errorMessage",
     buttonClass: "button-inactive",
     inputList: Array.from(formElement.querySelectorAll(`.edit__input`)),
@@ -147,11 +147,21 @@ const objectAdd = {
     inputList: Array.from(addElements.querySelectorAll('.add__input')),
     buttonElement: addElements.querySelector('.add__button')
 };
+//object list for profileimg form
+const objectProfileImg = {
+    errorClass: "formInput-error",
+    errorMessageClass: "formInput-errorMessage",
+    buttonClass: "button-inactive",
+    inputList: Array.from(avatarElements.querySelectorAll('.avatar__input')),
+    buttonElement: avatarElements.querySelector('.avatar__button')
+}
 
 //validate both forms by creating new FormValidator class
 const editValidClass = new FormValidator(objectEdit, formElement);
 const addValidClass = new FormValidator(objectAdd, addElements);
+const avatarValidClass = new FormValidator(objectProfileImg,avatarElements)
 
 editValidClass.enableValidation();
 addValidClass.enableValidation();
+avatarValidClass.enableValidation();
 

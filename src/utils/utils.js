@@ -14,6 +14,7 @@ export const subtitleToChange = container.querySelector('.profile__subtitle');
 export const addButton = container.querySelector('.profile__button-reg');
 // add image form in the DOM
 export const addElements = container.querySelector('.add');
+export const avatarElements = container.querySelector('.avatar');
 //input value of creating a new image
 export const imgTitleValue = container.querySelector(".add__input-title");
 export const imgLinkValue = container.querySelector(".add__input-img");
