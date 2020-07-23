@@ -31,7 +31,7 @@ export default class Card {
         this._element.querySelector(".elements__title").textContent = this._name;
         this._element.querySelector(".elements__img").src = this._link;
         this._element.querySelector('.elements__like-count').textContent = `${this._likeCount}`;
-        if (this._isLike == true) {
+        if (this._isLike === true) {
             this._element.querySelector('.elements__heart').classList.add('elements__heart_active');
         }
         if (this._ownerId === userId) {
@@ -51,7 +51,7 @@ export default class Card {
     }
 
     _toggleLike() {
-        if (this._isLike == false) {
+        if (this._isLike === false) {
             api.addLike(this._cardId);
             this._likeCount = this._likeCount + 1
             this._element.querySelector('.elements__heart').classList.add('elements__heart_active');

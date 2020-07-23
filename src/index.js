@@ -4,7 +4,7 @@
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
 import {
-    editButton, formElement, darken,  titleToChange, subtitleToChange, userId,
+    editButton, formElement, darken, titleToChange, subtitleToChange, userId,
     addButton, addElements, darkenDark, api, profileImg, profileImgBox, avatarElements
 } from "./utils/utils.js";
 import Section from "./components/Section.js";
@@ -15,6 +15,8 @@ import UserInfo from "./components/UserInfo.js";
 
 //create popupImg class for enlarge picture
 const popupImg = new PopupWithImage({ popupSelector: '.bigPic', darkSelector: darkenDark });
+//create popupWithConfrim class for confirm removing
+const popupRemove = new PopupWithConfirm({ popupSelector: '.remove', darkSelector: darken });
 
 //add initail cards from server to elements container
 api.getInitialCards()
@@ -27,7 +29,7 @@ api.getInitialCards()
                 //check if the user already liked the image
                 let isLike = false;
                 for (let i = 0; i < item.likes.length; i++) {
-                    if (item.likes[i]._id == userId) {
+                    if (item.likes[i]._id === userId) {
                         isLike = true;
                         break;
                     }
@@ -38,10 +40,9 @@ api.getInitialCards()
                     handleCardClick: (name, link) => {
                         popupImg.open(name, link);
                     },
-                    handleCardRemove: (item, id) => {
-                        //create popupWithConfrim class for confirm removing
-                        const popupRemove = new PopupWithConfirm({ popupSelector: '.remove', darkSelector: darken });
-                        popupRemove.open(item, id);
+                    handleCardRemove: (element, id) => {
+
+                        popupRemove.open(element, id);
                     }
 
                 }, '#img-template', ownerId, cardId, likeCount, isLike);
@@ -94,14 +95,12 @@ const addFormSubmitHandler = (newData) => {
                 data: [res], renderer: (item) => {
                     const cardId = item._id;
                     const card = new Card({
-                        data: item, 
+                        data: item,
                         handleCardClick: (name, link) => {
                             popupImg.open(name, link);
                         },
-                        handleCardRemove: (item, id) => {
-                            //create popupWithConfrim class for confirm removing
-                            const popupRemove = new PopupWithConfirm({ popupSelector: '.remove', darkSelector: darken });
-                            popupRemove.open(item, id);
+                        handleCardRemove: (element, id) => {
+                            popupRemove.open(element, id);
                         }
                     }, '#img-template', userId, cardId, 0, false);
                     const imgElement = card.createCard();
@@ -114,7 +113,7 @@ const addFormSubmitHandler = (newData) => {
         .catch(error => {
             console.log(error)
         })
-    
+
 };
 
 
@@ -164,7 +163,7 @@ const objectProfileImg = {
 //validate both forms by creating new FormValidator class
 const editValidClass = new FormValidator(objectEdit, formElement);
 const addValidClass = new FormValidator(objectAdd, addElements);
-const avatarValidClass = new FormValidator(objectProfileImg,avatarElements)
+const avatarValidClass = new FormValidator(objectProfileImg, avatarElements)
 
 editValidClass.enableValidation();
 addValidClass.enableValidation();
