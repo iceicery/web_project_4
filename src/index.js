@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css";
+//import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -94,7 +94,8 @@ const addFormSubmitHandler = (newData) => {
                 data: [res], renderer: (item) => {
                     const cardId = item._id;
                     const card = new Card({
-                        data: item, handleCardClick: (name, link) => {
+                        data: item, 
+                        handleCardClick: (name, link) => {
                             popupImg.open(name, link);
                         },
                         handleCardRemove: (item, id) => {
@@ -110,6 +111,10 @@ const addFormSubmitHandler = (newData) => {
 
             addImgList.renderer();
         })
+        .catch(error => {
+            console.log(error)
+        })
+    
 };
 
 
