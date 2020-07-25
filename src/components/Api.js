@@ -31,7 +31,7 @@ export default class Api {
     }
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me
     editProfile(newName, newJob) {
-        fetch(`${this.url}/users/me`, {
+        return fetch(`${this.url}/users/me`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({
@@ -47,7 +47,7 @@ export default class Api {
     }
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
     editProfilePic(newLink) {
-        fetch(`${this.url}/users/me/avatar`, {
+        return fetch(`${this.url}/users/me/avatar`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({

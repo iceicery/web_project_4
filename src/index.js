@@ -1,5 +1,5 @@
 //import CSS
-import "./index.css";
+//import "./index.css";
 //import JS modules
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidatior.js";
@@ -58,6 +58,13 @@ api.getInitialCards()
     })
 
 const user = new UserInfo(titleToChange, subtitleToChange);
+const renderLoading=(isLoading,selector,text)=>{
+    if (isLoading){
+        document.querySelector(`${selector}__button`).textContent=`${text}...`;
+    } else {
+        document.querySelector(`${selector}__button`).textContent=`${text}`;
+    }
+}
 //add inital userInfo to container
 api.getUserInfo()
     .then(res => {
@@ -72,8 +79,12 @@ api.getUserInfo()
 //edit from
 // update new userinfo when submitting the edit form
 const formSubmitHandler = (newData) => {
+    renderLoading(true, '.edit','Save')
     user.setUserInfo(newData.name, newData.link);
-    api.editProfile(newData.name, newData.link);
+    api.editProfile(newData.name, newData.link)
+    .finally((res) => {
+        renderLoading(false,'.edit','Save');
+    })
 };
 
 
@@ -89,6 +100,7 @@ editButton.addEventListener("click", () => {
 
 
 const addFormSubmitHandler = (newData) => {
+    renderLoading(true, '.add', 'Create');
     api.postNewCard(newData.name, newData.link)
         .then(res => {
             const addImgList = new Section({
@@ -113,7 +125,9 @@ const addFormSubmitHandler = (newData) => {
         .catch(error => {
             console.log(error)
         })
-
+        .finally((res)=>{
+            renderLoading(false,'.add','Create')
+        })
 };
 
 
@@ -125,8 +139,12 @@ addButton.addEventListener('click', () => {
 
 //avatar popup
 const avatarFormSubmitHandler = (newData) => {
+    renderLoading(true,'.avatar','Save');
     profileImg.src = newData.link;
-    api.editProfilePic(newData.link);
+    api.editProfilePic(newData.link)
+    .finally((res)=>{
+      renderLoading(false,'.avatar','Save');
+    });
 }
 const avatarFormPopup = new PopupWithForm(avatarFormSubmitHandler, { popupSelector: ".avatar", darkSelector: darken });
 profileImgBox.addEventListener('click', () => {
